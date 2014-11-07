@@ -5,3 +5,5 @@ Instead of putting many cards costing 999999 like the original game did, there a
 The project its still in pre-alpha, since the code still doesn't had a refactor and the duel system isn't functional, but it's already capable of saving the game, organizing the deck, buying cards and create a new save. The free duel screen is also almost finished, but still need a new texture and new duelist icons.
 
 So, let's use Monster Reborn and bring this amazing game back?
+
+Facebook: https://www.facebook.com/yugiohmilleniumquest
