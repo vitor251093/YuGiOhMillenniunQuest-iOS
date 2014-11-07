@@ -13,10 +13,9 @@
 #define BASE_WINDOW_WIDTH  480
 #define BASE_BUTTON_HEIGHT 37
 #define BASE_BUTTON_WIDTH  42
-#define BASE_BUTTON_SPACE  3
 
+#define BASE_SPACE_BETWEEN_BUTTONS     3
 #define BASE_BUTTON_ANIMATION_MOVEMENT 1000
-
 #define BASE_NORMAL_BUTTON_TEXT_SIZE   20
 #define BASE_SELECTED_BUTTON_TEXT_SIZE 22
 
@@ -53,7 +52,7 @@
         width = [UIUtilities widthOfString:text withFont:littleText]+(BASE_BUTTON_WIDTH*screenRect.size.width)/BASE_WINDOW_WIDTH;
         height = (BASE_BUTTON_HEIGHT*screenRect.size.height)/BASE_WINDOW_HEIGHT;
         x = (screenRect.size.width - width)/2;
-        y = ((BASE_BUTTON_HEIGHT+BASE_BUTTON_SPACE)*(2*index-total-1)+BASE_WINDOW_HEIGHT-BASE_BUTTON_HEIGHT)/2;
+        y = ((BASE_BUTTON_HEIGHT+BASE_SPACE_BETWEEN_BUTTONS)*(2*index-total-1)+BASE_WINDOW_HEIGHT-BASE_BUTTON_HEIGHT)/2;
         y = (y*screenRect.size.height)/BASE_WINDOW_HEIGHT;
         
         itemIndex = index;
