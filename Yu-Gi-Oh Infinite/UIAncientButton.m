@@ -10,9 +10,17 @@
 #import "UIUtilities.h"
 
 #define BASE_WINDOW_HEIGHT 320
-#define BASE_WINDOW_WIDTH 480
+#define BASE_WINDOW_WIDTH  480
 #define BASE_BUTTON_HEIGHT 37
-#define BASE_BUTTON_WIDTH 42
+#define BASE_BUTTON_WIDTH  42
+#define BASE_BUTTON_SPACE  3
+
+#define BASE_BUTTON_ANIMATION_MOVEMENT 1000
+
+#define BASE_NORMAL_BUTTON_TEXT_SIZE   20
+#define BASE_SELECTED_BUTTON_TEXT_SIZE 22
+
+#define BUTTON_ANIMATION_DURATION 0.7
 
 @implementation UIAncientButton
 
@@ -20,12 +28,12 @@
     self = [super init];
     if (self){
         //Button Text Fonts
-        littleText = [UIFont fontWithName:@"TimesNewRomanPS-ItalicMT" size:(20*screenRect.size.height)/BASE_WINDOW_HEIGHT];
-        bigText = [UIFont fontWithName:@"TimesNewRomanPS-ItalicMT" size:(22*screenRect.size.height)/BASE_WINDOW_HEIGHT];
+        littleText = [UIFont fontWithName:@"TimesNewRomanPS-ItalicMT" size:(BASE_NORMAL_BUTTON_TEXT_SIZE*screenRect.size.height)/BASE_WINDOW_HEIGHT];
+        bigText = [UIFont fontWithName:@"TimesNewRomanPS-ItalicMT" size:(BASE_SELECTED_BUTTON_TEXT_SIZE*screenRect.size.height)/BASE_WINDOW_HEIGHT];
         self.titleLabel.font = littleText;
         
         //Button Background
-        CGFloat scale = (0.5*screenRect.size.height)/320;
+        CGFloat scale = (0.5*screenRect.size.height)/BASE_WINDOW_HEIGHT;
         inactiveImage = [UIImage imageNamed:@"ButtonInactive"];
         activeImage = [UIImage imageNamed:@"ButtonActive"];
         inactiveImage = [UIUtilities imageWithImage:inactiveImage scaledRate:scale];
@@ -45,12 +53,12 @@
         width = [UIUtilities widthOfString:text withFont:littleText]+(BASE_BUTTON_WIDTH*screenRect.size.width)/BASE_WINDOW_WIDTH;
         height = (BASE_BUTTON_HEIGHT*screenRect.size.height)/BASE_WINDOW_HEIGHT;
         x = (screenRect.size.width - width)/2;
-        y = ((20*(2*index - total) + 121)*screenRect.size.height)/BASE_WINDOW_HEIGHT;
+        y = ((BASE_BUTTON_HEIGHT+BASE_BUTTON_SPACE)*(2*index-total-1)+BASE_WINDOW_HEIGHT-BASE_BUTTON_HEIGHT)/2;
+        y = (y*screenRect.size.height)/BASE_WINDOW_HEIGHT;
         
         itemIndex = index;
-        movingLenght = (1000*screenRect.size.width)/BASE_WINDOW_WIDTH;
-        if (index%2==1) x-=movingLenght;
-        else x+=movingLenght;
+        movingLenght = (BASE_BUTTON_ANIMATION_MOVEMENT*screenRect.size.width)/BASE_WINDOW_WIDTH;
+        x+=(index%2)?(-movingLenght):(movingLenght);
         [self setFrame:CGRectMake(x,y,width,height)];
         
         //Button Text
@@ -72,22 +80,15 @@
     [self setBackgroundImage:inactiveImage forState:UIControlStateNormal];
     [self setFrame:CGRectMake(x,y,width,height)];
     self.titleLabel.font = littleText;
-    CGFloat duration = 0.7;
     
-    if (itemIndex%2==1) x+=movingLenght;
-    else x-=movingLenght;
-    
-    [UIView animateWithDuration:duration
+    x+=(itemIndex%2)?(movingLenght):(-movingLenght);
+    [UIView animateWithDuration:BUTTON_ANIMATION_DURATION
                      animations:^{self.frame = CGRectMake(x,y,width,height);}
                      completion:nil];
 }
 -(void)outAnimation{
-    CGFloat duration = 0.7;
-    
-    if (itemIndex%2==0) x+=movingLenght;
-    else x-=movingLenght;
-    
-    [UIView animateWithDuration:duration
+    x+=(itemIndex%2)?(-movingLenght):(movingLenght);
+    [UIView animateWithDuration:BUTTON_ANIMATION_DURATION
                      animations:^{self.frame = CGRectMake(x,y,width,height);}
                      completion:nil];
 }
