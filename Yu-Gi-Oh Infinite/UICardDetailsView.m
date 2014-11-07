@@ -8,6 +8,13 @@
 
 #import "UICardDetailsView.h"
 
+#define BASE_WINDOW_HEIGHT 320
+#define BASE_WINDOW_WIDTH  480
+
+#define BASE_ANIMATION_MOVEMENT 1000
+
+#define ANIMATION_DURATION 0.7
+
 @implementation UICardDetailsView
 
 -(void)calculateBaseBlockWidth{
@@ -16,14 +23,14 @@
     baseBlockWidth = windowFrame.size.width - card.origin.x - blockStartX;
 }
 -(CGRect)generateRectOf:(CGRect)position{
-    CGFloat x = blockStartX + (position.origin.x*baseBlockWidth)/480;
-    CGFloat y = windowFrame.origin.y + (position.origin.y*windowFrame.size.height)/320;
-    CGFloat w = (baseBlockWidth*position.size.width)/480;
-    CGFloat h = (position.size.height*windowFrame.size.height)/320;
+    CGFloat x = blockStartX + (position.origin.x*baseBlockWidth)/BASE_WINDOW_WIDTH;
+    CGFloat y = windowFrame.origin.y + (position.origin.y*windowFrame.size.height)/BASE_WINDOW_HEIGHT;
+    CGFloat w = (baseBlockWidth*position.size.width)/BASE_WINDOW_WIDTH;
+    CGFloat h = (position.size.height*windowFrame.size.height)/BASE_WINDOW_HEIGHT;
     return CGRectMake(x,y,w,h);
 }
 -(CGRect)slideToRight:(CGRect)frame{
-    return CGRectMake(frame.origin.x+1000,frame.origin.y,frame.size.width,frame.size.height);
+    return CGRectMake(frame.origin.x+BASE_ANIMATION_MOVEMENT,frame.origin.y,frame.size.width,frame.size.height);
 }
 
 -(UITextField*)generateTextFieldAt:(CGRect)position{
@@ -44,9 +51,9 @@
 }
 
 -(void)initCard:(UIImage*)cardImage{
-    CGFloat x = (10*windowFrame.size.width)/480;
+    CGFloat x = (10*windowFrame.size.width)/BASE_WINDOW_WIDTH;
     CGFloat y = windowFrame.origin.y + windowFrame.size.height/2-(315*windowFrame.size.height)/666;
-    CGFloat h = (300*windowFrame.size.height)/320;
+    CGFloat h = (300*windowFrame.size.height)/BASE_WINDOW_HEIGHT;
     CGFloat w = (h*419)/610;
     
     cardPlayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FaceDown"]];
@@ -55,20 +62,20 @@
     [self addSubview:cardPlayer];
 }
 -(void)loadBackground{
-    CGFloat scale = (0.3*windowFrame.size.height)/320;
+    CGFloat scale = (0.3*windowFrame.size.height)/BASE_WINDOW_HEIGHT;
     UIImage *passwordFrame = [UIImage imageNamed:@"passwordFrame"];
     passwordFrame = [UIUtilities imageWithImage:passwordFrame scaledRate:scale];
     passwordFrame = [UIUtilities insertCapInsetsIn:passwordFrame];
     
-    BGType = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,8,480,45)]];
+    BGType = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,8,BASE_WINDOW_WIDTH,45)]];
     [BGType setImage:passwordFrame];
     [self addSubview:BGType];
     
-    BGGuardianStar = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,53,480,90)]];
+    BGGuardianStar = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,53,BASE_WINDOW_WIDTH,90)]];
     [BGGuardianStar setImage:passwordFrame];
     [self addSubview:BGGuardianStar];
     
-    BGDescription = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,143,480,166)]];
+    BGDescription = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,143,BASE_WINDOW_WIDTH,166)]];
     [BGDescription setImage:passwordFrame];
     [self addSubview:BGDescription];
 }
@@ -85,7 +92,7 @@
         [self addSubview:typeIcon];
     }
     
-    typeText = [self generateTextFieldAt:CGRectMake(0,8,480,45)];
+    typeText = [self generateTextFieldAt:CGRectMake(0,8,BASE_WINDOW_WIDTH,45)];
     frameBase = typeText.frame;
     [typeText setFrame:CGRectMake(frameBase.origin.x + 10*windowHeight/75, frameBase.origin.y, frameBase.size.width, frameBase.size.height)];
     [typeText setText:[[playerCard type] componentsSeparatedByString:@" "][0]];
@@ -93,7 +100,7 @@
     [self addSubview:typeText];
     
     if ([playerCard isMonster]){
-        guardianStarText = [self generateTextFieldAt:CGRectMake(0,50,480,45)];
+        guardianStarText = [self generateTextFieldAt:CGRectMake(0,50,BASE_WINDOW_WIDTH,45)];
         frameBase = guardianStarText.frame;
         [guardianStarText setFrame:CGRectMake(frameBase.origin.x+3*windowHeight/75,frameBase.origin.y,
                                               frameBase.size.width,frameBase.size.height)];
@@ -112,7 +119,7 @@
         [guardianStarTwoIcon setFrame:CGRectMake(frameBase.origin.x + space/1.7, frameBase.origin.y + space*1.7,side,side)];
         [self addSubview:guardianStarTwoIcon];
     
-        guardianStarOneText = [self generateTextFieldAt:CGRectMake(0,75,480,35)];
+        guardianStarOneText = [self generateTextFieldAt:CGRectMake(0,75,BASE_WINDOW_WIDTH,35)];
         frameBase = guardianStarOneText.frame;
         [guardianStarOneText setFrame:CGRectMake(frameBase.origin.x + space/1.3 + side,frameBase.origin.y,
                                                  frameBase.size.width,frameBase.size.height)];
@@ -120,7 +127,7 @@
         guardianStarOneText.font = [UIFont systemFontOfSize:windowHeight/22];
         [self addSubview:guardianStarOneText];
     
-        guardianStarTwoText = [self generateTextFieldAt:CGRectMake(0,75,480,35)];
+        guardianStarTwoText = [self generateTextFieldAt:CGRectMake(0,75,BASE_WINDOW_WIDTH,35)];
         frameBase = guardianStarTwoText.frame;
         [guardianStarTwoText setFrame:CGRectMake(frameBase.origin.x + space/1.3 + side,frameBase.origin.y + space*0.7,
                                                  frameBase.size.width, frameBase.size.height)];
@@ -129,10 +136,10 @@
         [self addSubview:guardianStarTwoText];
     }
     
-    frameBase = [self generateRectOf:CGRectMake(0,50,480,45)];
+    frameBase = [self generateRectOf:CGRectMake(0,50,BASE_WINDOW_WIDTH,45)];
     frameBase = CGRectMake(frameBase.origin.x+3*windowHeight/75,frameBase.origin.y, frameBase.size.width,frameBase.size.height);
     space = frameBase.origin.x - blockStartX;
-    descriptionText = [self generateTextViewAt:CGRectMake(0,150,480,35)];
+    descriptionText = [self generateTextViewAt:CGRectMake(0,150,BASE_WINDOW_WIDTH,35)];
     [descriptionText setFrame:CGRectMake(frameBase.origin.x, descriptionText.frame.origin.y,
                                          BGDescription.frame.size.width - space*2,BGDescription.frame.size.height)];
     [descriptionText setText:[playerCard description]];
@@ -159,7 +166,7 @@
     CGRect GSTwoTextFrame = guardianStarTwoText.frame;
     CGRect GSDescFrame = descriptionText.frame;
     
-    cardPlayer.frame = CGRectMake(cardFrame.origin.x-1000,cardFrame.origin.y,cardFrame.size.width,cardFrame.size.height);
+    cardPlayer.frame = CGRectMake(cardFrame.origin.x-BASE_ANIMATION_MOVEMENT,cardFrame.origin.y,cardFrame.size.width,cardFrame.size.height);
     BGType.frame = [self slideToRight:bgTypeFrame];
     BGGuardianStar.frame = [self slideToRight:bgGSFrame];
     BGDescription.frame = [self slideToRight:bgDescFrame];
@@ -173,7 +180,7 @@
     descriptionText.frame = [self slideToRight:GSDescFrame];
     self.alpha = 0;
     
-    [UIView animateWithDuration:0.7
+    [UIView animateWithDuration:ANIMATION_DURATION
                      animations:^{
                          cardPlayer.frame = cardFrame;
                          BGType.frame = bgTypeFrame;
@@ -222,9 +229,9 @@
     CGRect GSTwoTextFrame = guardianStarTwoText.frame;
     CGRect GSDescFrame = descriptionText.frame;
     
-    [UIView animateWithDuration:0.7
+    [UIView animateWithDuration:ANIMATION_DURATION
                      animations:^{
-                         cardPlayer.frame = CGRectMake(cardFrame.origin.x-1000,cardFrame.origin.y,cardFrame.size.width,cardFrame.size.height);
+                         cardPlayer.frame = CGRectMake(cardFrame.origin.x-BASE_ANIMATION_MOVEMENT,cardFrame.origin.y,cardFrame.size.width,cardFrame.size.height);
                          BGType.frame = [self slideToRight:bgTypeFrame];
                          BGGuardianStar.frame = [self slideToRight:bgGSFrame];
                          BGDescription.frame = [self slideToRight:bgDescFrame];
