@@ -10,6 +10,12 @@
 #import "NSCard.h"
 #import "UIUtilities.h"
 
+#define WINDOW_BASE_WIDTH  480
+#define WINDOW_BASE_HEIGHT 320
+
+#define CARD_BASE_HEIGHT       300
+#define CARD_BASE_MARGIN_SPACE 10
+
 @implementation UIPasswordView
 
 -(void)showMessage:(NSString*)message{
@@ -28,10 +34,10 @@
     baseBlockWidth = windowFrame.size.width - card.origin.x - blockStartX;
 }
 -(CGRect)generateRectOf:(CGRect)position{
-    CGFloat x = blockStartX + (position.origin.x*baseBlockWidth)/480;
-    CGFloat y = windowFrame.origin.y + (position.origin.y*windowFrame.size.height)/320;
-    CGFloat w = (baseBlockWidth*position.size.width)/480;
-    CGFloat h = (position.size.height*windowFrame.size.height)/320;
+    CGFloat x = blockStartX + (position.origin.x*baseBlockWidth)/WINDOW_BASE_WIDTH;
+    CGFloat y = windowFrame.origin.y + (position.origin.y*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
+    CGFloat w = (baseBlockWidth*position.size.width)/WINDOW_BASE_WIDTH;
+    CGFloat h = (position.size.height*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
     return CGRectMake(x,y,w,h);
 }
 -(UITextField*)generateTextFieldAt:(CGRect)position{
@@ -52,9 +58,9 @@
 }
 
 -(void)initCard{
-    CGFloat x = (10*windowFrame.size.width)/480;
+    CGFloat x = (CARD_BASE_MARGIN_SPACE*windowFrame.size.width)/WINDOW_BASE_WIDTH;
     CGFloat y = windowFrame.origin.y + windowFrame.size.height/2-(315*windowFrame.size.height)/666;
-    CGFloat h = (300*windowFrame.size.height)/320;
+    CGFloat h = (CARD_BASE_HEIGHT*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
     CGFloat w = (h*419)/610;
     
     cardPlayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FaceDown"]];
@@ -69,7 +75,7 @@
                        } completion:nil];
 }
 -(void)loadBackground{
-    CGFloat scale = (0.3*windowFrame.size.height)/320;
+    CGFloat scale = (0.3*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
     UIImage *passwordFrame = [UIImage imageNamed:@"passwordFrame"];
     passwordFrame = [UIUtilities imageWithImage:passwordFrame scaledRate:scale];
     passwordFrame = [UIUtilities insertCapInsetsIn:passwordFrame];
