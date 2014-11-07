@@ -88,10 +88,10 @@
 }
 +(UIImage*)getCardPicture:(NSString*)code{
     NSString* imageFile = [NSString stringWithFormat:@"%@/%@.",[[NSBundle mainBundle] resourcePath],code];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[imageFile stringByAppendingString:@"png"]])
-        return [UIImage imageWithContentsOfFile:[imageFile stringByAppendingString:@"png"]];
     if ([[NSFileManager defaultManager] fileExistsAtPath:[imageFile stringByAppendingString:@"jpg"]])
         return [UIImage imageWithContentsOfFile:[imageFile stringByAppendingString:@"jpg"]];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[imageFile stringByAppendingString:@"png"]])
+        return [UIImage imageWithContentsOfFile:[imageFile stringByAppendingString:@"png"]];
     return nil;
 }
 
@@ -163,15 +163,15 @@
 }
 -(int)getMonsterStarValue{
 	int VAL = [self attack] + [self defense];
-	if (VAL<=400) return 5;                 //Valor de 5
-	if (VAL<=1200) return (VAL/40)-5;       //Valor de 5 a 25
-	if (VAL<=2200) return (VAL/20)-35;      //Valor de 25 a 75
-	if (VAL<=2600) return ((3*VAL)/20)-255;	//Valor de 75 a 135
-	if (VAL<=3000) return (VAL/5)-385;      //Valor de 135 a 215
-	if (VAL<=3400) return ((2*VAL)/5)-985;	//Valor de 215 a 375
-	if (VAL<=4200) return (VAL/2)-1325;     //Valor de 375 a 775
-	if (VAL<=4800) return ((3*VAL)/2)-5525;	//Valor de 775 a 1675
-	return (2*VAL)-7925;                    //Valor de 1675 a 32075
+	if (VAL<=400) return 5;                 //Price: 5
+	if (VAL<=1200) return (VAL/40)-5;       //Price: from 5    to 25
+	if (VAL<=2200) return (VAL/20)-35;      //Price: from 25   to 75
+	if (VAL<=2600) return ((3*VAL)/20)-255;	//Price: from 75   to 135
+	if (VAL<=3000) return (VAL/5)-385;      //Price: from 135  to 215
+	if (VAL<=3400) return ((2*VAL)/5)-985;	//Price: from 215  to 375
+	if (VAL<=4200) return (VAL/2)-1325;     //Price: from 375  to 775
+	if (VAL<=4800) return ((3*VAL)/2)-5525;	//Price: from 775  to 1675
+	return (2*VAL)-7925;                    //Price: from 1675 to 32075 (ATK:10000 DEF:10000)
 }
 
 -(NSArray*)sortRandomMonsters:(int)number WithMoreThen:(int)min andLessThen:(int)max withExtra:(NSArray*)extra{
@@ -527,14 +527,12 @@
     else return fusionMaterial;
 }
 
--(BattleResult)resultBattleWith:(NSCard*)enemy{
-    BOOL isEnemyInAttackPosition = [enemy isInAttackPosition];
+-(BattleResult)resultBattleWith:(NSCard*)enemyCard{
+    BOOL isEnemyInAttackPosition = [enemyCard isInAttackPosition];
     int yourAttack = [self attack];
-    int enemyPoint;
-    if (isEnemyInAttackPosition) enemyPoint = [enemy attack];
-    else enemyPoint = [enemy defense];
+    int enemyPoint = isEnemyInAttackPosition?[enemyCard attack]:[enemyCard defense];
     
-    GuardianStarEffect effect = [self getGuardianStarEffectOf:self with:enemy];
+    GuardianStarEffect effect = [self getGuardianStarEffectOf:self with:enemyCard];
     if (effect == YourBigger) yourAttack += 500;
     if (effect == EnemyBigger) enemyPoint += 500;
     
