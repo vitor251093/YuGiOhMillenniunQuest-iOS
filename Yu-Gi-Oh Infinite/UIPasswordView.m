@@ -17,6 +17,9 @@
 #define CARD_BASE_HEIGHT       300
 #define CARD_BASE_MARGIN_SPACE 10
 
+#define BASE_CARD_PICTURE_WIDTH  419
+#define BASE_CARD_PICTURE_HEIGHT 610
+
 @implementation UIPasswordView
 
 -(void)showMessage:(NSString*)message{
@@ -62,7 +65,7 @@
     CGFloat x = (CARD_BASE_MARGIN_SPACE*windowFrame.size.width)/WINDOW_BASE_WIDTH;
     CGFloat y = windowFrame.origin.y + windowFrame.size.height/2-(315*windowFrame.size.height)/666;
     CGFloat h = (CARD_BASE_HEIGHT*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
-    CGFloat w = (h*419)/610;
+    CGFloat w = (h*BASE_CARD_PICTURE_WIDTH)/BASE_CARD_PICTURE_HEIGHT;
     
     cardPlayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FaceDown"]];
     [cardPlayer setFrame:CGRectMake(x,y,w,h)];

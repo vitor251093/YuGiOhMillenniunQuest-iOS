@@ -12,7 +12,6 @@
 @interface UIFreeDuelView : UIView <UICollectionViewDelegate, UICollectionViewDataSource>{
     CGRect windowFrame;
     CGRect collectionFrame;
-    int sideSpace;
     int cellSide;
     
     UICollectionView* duelistsGrid;

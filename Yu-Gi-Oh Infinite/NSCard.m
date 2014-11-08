@@ -81,7 +81,7 @@
 
 +(int)getNumberOfCards{
     NSArray* data = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"DuelMonsterCards" withExtension:@"plist"]];
-    return [data count];
+    return (int)[data count];
 }
 -(UIImage*)image{
     return [NSCard getCardPicture:[self serial]];
@@ -545,86 +545,66 @@
     else return BattleDrawWhileDefensePosition;
 }
 -(GuardianStarEffect)getGuardianStarEffectOf:(NSCard*)yourCard with:(NSCard*)enemyCard{
-    if ([yourCard activeGuardianStar] == Mercury) {
+         if ([yourCard activeGuardianStar] == Mercury) {
         if ([enemyCard activeGuardianStar] == Sun) return YourBigger;
         if ([enemyCard activeGuardianStar] == Venus) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Sun) {
+    else if ([yourCard activeGuardianStar] == Sun) {
         if ([enemyCard activeGuardianStar] == Moon) return YourBigger;
         if ([enemyCard activeGuardianStar] == Mercury) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Moon) {
+    else if ([yourCard activeGuardianStar] == Moon) {
         if ([enemyCard activeGuardianStar] == Venus) return YourBigger;
         if ([enemyCard activeGuardianStar] == Sun) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Venus) {
+    else if ([yourCard activeGuardianStar] == Venus) {
         if ([enemyCard activeGuardianStar] == Mercury) return YourBigger;
         if ([enemyCard activeGuardianStar] == Moon) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Mars) {
+    else if ([yourCard activeGuardianStar] == Mars) {
         if ([enemyCard activeGuardianStar] == Jupiter) return YourBigger;
         if ([enemyCard activeGuardianStar] == Neptune) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Jupiter) {
+    else if ([yourCard activeGuardianStar] == Jupiter) {
         if ([enemyCard activeGuardianStar] == Saturn) return YourBigger;
         if ([enemyCard activeGuardianStar] == Mars) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Saturn) {
+    else if ([yourCard activeGuardianStar] == Saturn) {
         if ([enemyCard activeGuardianStar] == Uranus) return YourBigger;
         if ([enemyCard activeGuardianStar] == Jupiter) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Uranus) {
+    else if ([yourCard activeGuardianStar] == Uranus) {
         if ([enemyCard activeGuardianStar] == Pluto) return YourBigger;
         if ([enemyCard activeGuardianStar] == Saturn) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Pluto) {
+    else if ([yourCard activeGuardianStar] == Pluto) {
         if ([enemyCard activeGuardianStar] == Neptune) return YourBigger;
         if ([enemyCard activeGuardianStar] == Uranus) return EnemyBigger;
     }
-    if ([yourCard activeGuardianStar] == Neptune) {
+    else if ([yourCard activeGuardianStar] == Neptune) {
         if ([enemyCard activeGuardianStar] == Mars) return YourBigger;
         if ([enemyCard activeGuardianStar] == Pluto) return EnemyBigger;
     }
     return Nothing;
 }
 
--(BOOL)isMonster{
-    if ([self isSpell] || [self isTrap]) return FALSE;
-    return TRUE;
-}
--(BOOL)isSpell{
-    if ([[self attribute] isEqualToString:@"SPELL"]) return TRUE;
-    return FALSE;
-}
+-(BOOL)isMonster {return (![self isSpell] && ![self isTrap]);}
+-(BOOL)isSpell   {return ([[self attribute] isEqualToString:@"SPELL"]);}
+-(BOOL)isMagic   {return ([[self type] hasPrefix:@"Magic"]);}
+-(BOOL)isEquip   {return ([[self type] hasPrefix:@"Equip"]);}
+-(BOOL)isRitual  {return ([[self type] hasPrefix:@"Ritual"]);}
+-(BOOL)isField   {return ([[self type] hasPrefix:@"Field"]);}
+-(BOOL)isTrap    {return ([[self attribute] isEqualToString:@"TRAP"]);}
 
--(BOOL)isMagic{
-    if ([[self type] hasPrefix:@"Magic"]) return TRUE;
-    return FALSE;
-}
--(BOOL)isEquip{
-    if ([[self type] hasPrefix:@"Equip"]) return TRUE;
-    return FALSE;
-}
--(BOOL)isRitual{
-    if ([[self type] hasPrefix:@"Ritual"]) return TRUE;
-    return FALSE;
-}
--(BOOL)isField{
-    if ([[self type] hasPrefix:@"Field"]) return TRUE;
-    return FALSE;
-}
-
--(BOOL)isTrap{
-    if ([[self attribute] isEqualToString:@"TRAP"]) return TRUE;
-    return FALSE;
-}
 -(BOOL)ultimateRare{
+    //Exodia Cards are Ultimate Rare
     NSArray* Ucards = @[@"33396948",@"07902349",@"70903634",@"44519536",@"08124921"];
     for (NSString *card in Ucards)
         if ([card isEqualToString:[self serial]]) return TRUE;
     return FALSE;
 }
 -(BOOL)uniqueCard{
+    //The Divine Beast will be Unique
     NSArray* Ucards = @[];
     for (NSString *card in Ucards)
         if ([card isEqualToString:[self serial]]) return TRUE;

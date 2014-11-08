@@ -8,6 +8,8 @@
 
 #import "UIFreeDuelView.h"
 
+#define BASE_WINDOW_MARGIN 20
+
 @implementation UIFreeDuelView
 
 -(UITextField*)generateTextFieldAtFrame:(CGRect)frame withColor:(UIColor*)color{
@@ -28,15 +30,16 @@
 }
 
 -(void)generateMainText{
-    freeDuelText = [self generateTextFieldAtFrame:[UIUtilities addBorder:CGRectMake(0,20,windowFrame.size.width,collectionFrame.origin.y-20)
+    freeDuelText = [self generateTextFieldAtFrame:[UIUtilities addBorder:CGRectMake(0,BASE_WINDOW_MARGIN,windowFrame.size.width,
+                                                                                    collectionFrame.origin.y-BASE_WINDOW_MARGIN)
                                                                atPercent:20] withColor:[UIUtilities colorWithHex:@"95b3a5"]];
     freeDuelText.text = @"FREE DUEL";
     freeDuelText.font = [UIFont systemFontOfSize:collectionFrame.origin.y/1.8];
     [self addSubview:freeDuelText];
 }
 -(void)generateReturnButton{
-    UIButton* returnButton = [self generateButtonAt:CGRectMake(collectionFrame.origin.x, 20,
-                                                               collectionFrame.size.width/4, collectionFrame.origin.y-20) withTitle:@"Back"];
+    UIButton* returnButton = [self generateButtonAt:CGRectMake(collectionFrame.origin.x, BASE_WINDOW_MARGIN, collectionFrame.size.width/4,
+                                                               collectionFrame.origin.y - BASE_WINDOW_MARGIN) withTitle:@"Back"];
     int widthText = [UIUtilities widthOfString:@"Back" withFont:[[returnButton titleLabel] font]];
     [returnButton setFrame:CGRectMake(returnButton.frame.origin.x,returnButton.frame.origin.y,
                                       widthText*1.1,returnButton.frame.size.height)];
@@ -63,11 +66,9 @@
         windowFrame = frame;
         [self setBackgroundColor:[UIUtilities colorWithHex:@"424a4a"]];
         
-        sideSpace = 20;
-        collectionFrame = CGRectMake(windowFrame.origin.x+sideSpace, windowFrame.origin.y+(windowFrame.size.height*14)/100,
-                                     windowFrame.size.width-2*sideSpace, (windowFrame.size.height*86)/100 - sideSpace);
-        cellSide = collectionFrame.size.width;
-        cellSide = cellSide/5.5;
+        collectionFrame = CGRectMake(windowFrame.origin.x+BASE_WINDOW_MARGIN,     windowFrame.origin.y+(windowFrame.size.height*14)/100,
+                                     windowFrame.size.width-2*BASE_WINDOW_MARGIN, (windowFrame.size.height*86)/100 - BASE_WINDOW_MARGIN);
+        cellSide = collectionFrame.size.width/5.5;
         
         duelists = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Duelists" withExtension:@"plist"]];
     }
@@ -139,7 +140,7 @@
     
     if ([indexPath section]==0){
         for (UIView* sub in [cell subviews]) [sub removeFromSuperview];
-        int num = [indexPath item];
+        int num = (int)[indexPath item];
         
         NSDictionary* duelist;
         UIImage* iconImage;
@@ -170,7 +171,7 @@
     return cell;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    [self fadeToDuelWith:[indexPath item]];
+    [self fadeToDuelWith:(int)[indexPath item]];
 }
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake(cellSide, cellSide);

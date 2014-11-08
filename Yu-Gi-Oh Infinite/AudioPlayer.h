@@ -10,7 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface AudioPlayer : NSObject
+@interface AudioPlayer : NSObject <AVAudioSessionDelegate>
 
 @property (nonatomic) MPMoviePlayerController *audioPlayer;
 

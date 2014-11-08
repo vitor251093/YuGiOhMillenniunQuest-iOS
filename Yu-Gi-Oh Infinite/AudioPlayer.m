@@ -21,7 +21,6 @@
         [self.audioPlayer play];
         
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
-        [[AVAudioSession sharedInstance] setDelegate:self];
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
     }
     return self;
