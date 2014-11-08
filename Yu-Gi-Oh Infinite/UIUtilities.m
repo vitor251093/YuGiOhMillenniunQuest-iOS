@@ -46,11 +46,11 @@ AudioPlayer* audioPlayer;
 }
 
 +(void)playSound:(NSString*)name ofType:(NSString*)ext{
-    SystemSoundID menuItemClickSound;
     NSURL *soundFileURL = [[NSBundle mainBundle] URLForResource:name withExtension:ext];
-    AudioServicesCreateSystemSoundID( (__bridge CFURLRef)soundFileURL, &menuItemClickSound);
-    AudioServicesAddSystemSoundCompletion(menuItemClickSound, nil, nil, nil, (__bridge void*) self);
-    AudioServicesPlaySystemSound( menuItemClickSound );
+    
+    SystemSoundID audioEffect;
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundFileURL, &audioEffect);
+    AudioServicesPlaySystemSound(audioEffect);
 }
 
 +(CGFloat)widthOfString:(NSString*)string withFont:(UIFont*)font{

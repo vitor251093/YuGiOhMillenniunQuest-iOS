@@ -21,8 +21,8 @@
     [player setValue:name forKey:@"Name"];
     
     NSMutableArray* deck = [[NSMutableArray alloc] init];
-    [deck addObjectsFromArray:[_gameCards sortRandomMonsters:35 WithMoreThen:0 andLessThen:1000 withExtra:@[]]];
-    [deck addObjectsFromArray:[_gameCards sortRandomMonsters:3 WithMoreThen:0 andLessThen:1200 withExtra:@[]]];
+    [deck addObjectsFromArray:[_gameCards sortRandomMonsters:35 WithMoreThen:0 andLessThen:2000 withExtra:@[]]];
+    [deck addObjectsFromArray:[_gameCards sortRandomMonsters:3 WithMoreThen:0 andLessThen:2400 withExtra:@[]]];
     [deck addObject:@([_gameCards sortRandomMagic])];
     [deck addObject:@([_gameCards sortRandomMagic])];
     [player setValue:deck forKey:@"Deck"];

@@ -42,7 +42,7 @@
 }
 -(CGRect)generateRectOf:(CGRect)position{
     CGFloat x = blockStartX + (position.origin.x*baseBlockWidth)/WINDOW_BASE_WIDTH;
-    CGFloat y = windowFrame.origin.y + (position.origin.y*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
+    CGFloat y = cardPlayer.frame.origin.y + (position.origin.y*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
     CGFloat w = (baseBlockWidth*position.size.width)/WINDOW_BASE_WIDTH;
     CGFloat h = (position.size.height*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
     return CGRectMake(x,y,w,h);
@@ -65,10 +65,10 @@
 }
 
 -(void)initCard{
-    CGFloat x = (CARD_BASE_MARGIN_SPACE*windowFrame.size.width)/WINDOW_BASE_WIDTH;
-    CGFloat y = windowFrame.origin.y + windowFrame.size.height/2-(315*windowFrame.size.height)/666;
     CGFloat h = (CARD_BASE_HEIGHT*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
     CGFloat w = (h*BASE_CARD_PICTURE_WIDTH)/BASE_CARD_PICTURE_HEIGHT;
+    CGFloat x = (CARD_BASE_MARGIN_SPACE*windowFrame.size.width)/WINDOW_BASE_WIDTH;
+    CGFloat y = windowFrame.origin.y + windowFrame.size.height/2 - h/2;
     
     cardPlayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FaceDown"]];
     [cardPlayer setFrame:CGRectMake(x,y,w,h)];
@@ -86,34 +86,34 @@
     UIImage *passwordFrame = [UIImage imageNamed:@"passwordFrame"];
     passwordFrame = [[passwordFrame imageWithScaledRate:scale] imageWithCapInsets];
     
-    BGStarts = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,8,WINDOW_BASE_WIDTH,75)]];
+    BGStarts = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,0,WINDOW_BASE_WIDTH,75)]];
     [BGStarts setImage:passwordFrame];
     [self addSubview:BGStarts];
     
-    BGPassword = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,83,WINDOW_BASE_WIDTH,105)]];
+    BGPassword = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,75,WINDOW_BASE_WIDTH,105)]];
     [BGPassword setImage:passwordFrame];
     [self addSubview:BGPassword];
     
-    BGButtons = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,188,WINDOW_BASE_WIDTH,121)]];
+    BGButtons = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,180,WINDOW_BASE_WIDTH,121)]];
     [BGButtons setImage:passwordFrame];
     [self addSubview:BGButtons];
 }
 -(void)loadTextFields{
-    starchipText = [self generateTextFieldAt:CGRectMake(30,5,WINDOW_BASE_WIDTH,53)];
+    starchipText = [self generateTextFieldAt:CGRectMake(30,0,WINDOW_BASE_WIDTH,53)];
     starchipText.font = [UIFont fontWithName:@"Copperplate" size:(30*windowFrame.size.height)/WINDOW_BASE_HEIGHT];
     [starchipText setTextColor:[UIColor yellowColor]];
     [starchipText setEnabled:FALSE];
     [starchipText setText:@"STARCHIP"];
     [self addSubview:starchipText];
     
-    starCount = [self generateTextFieldAt:CGRectMake(30,30,WINDOW_BASE_WIDTH,53)];
+    starCount = [self generateTextFieldAt:CGRectMake(30,25,WINDOW_BASE_WIDTH,53)];
     starCount.font = [UIFont fontWithName:@"ZapfDingbatsITC" size:(24*windowFrame.size.height)/WINDOW_BASE_HEIGHT];
     [starCount setTextColor:[UIColor yellowColor]];
     [starCount setEnabled:FALSE];
     [starCount setText:[NSString stringWithFormat:@"✯x %d",[gameSave starsNumber]]];
     [self addSubview:starCount];
     
-    passwordInput = [self generateTextFieldAt:CGRectMake(0,110,WINDOW_BASE_WIDTH,50)];
+    passwordInput = [self generateTextFieldAt:CGRectMake(0,105,WINDOW_BASE_WIDTH,50)];
     passwordInput.font = [UIFont fontWithName:@"CourierNewPSMT" size:(85*baseBlockWidth)/WINDOW_BASE_WIDTH];
     passwordInput.delegate = self;
     passwordInput.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
@@ -127,7 +127,7 @@
     UIImage* tryButtonFrame = [UIImage imageNamed:@"tryButtonFrame"];
     tryButtonFrame = [[tryButtonFrame imageWithScaledRate:scale] imageWithCapInsets];
     
-    tryCode = [self generateButtonAt:CGRectMake(30,215,200,70) withTitle:@"BUY"];
+    tryCode = [self generateButtonAt:CGRectMake(30,205,200,70) withTitle:@"BUY"];
     tryCode.titleLabel.font = [UIFont systemFontOfSize:(60*baseBlockWidth)/WINDOW_BASE_WIDTH];
     [tryCode setBackgroundImage:tryButtonFrame forState:UIControlStateNormal];
     [tryCode addTarget:self action:@selector(tryCard:) forControlEvents:UIControlEventTouchDown];
@@ -136,7 +136,7 @@
     UIImage* backButtonFrame = [UIImage imageNamed:@"backButtonFrame"];
     backButtonFrame = [[backButtonFrame imageWithScaledRate:scale] imageWithCapInsets];
     
-    backCode = [self generateButtonAt:CGRectMake(250,215,200,70) withTitle:@"BACK"];
+    backCode = [self generateButtonAt:CGRectMake(250,205,200,70) withTitle:@"BACK"];
     backCode.titleLabel.font = [UIFont systemFontOfSize:(60*baseBlockWidth)/WINDOW_BASE_WIDTH];
     [backCode setBackgroundImage:backButtonFrame forState:UIControlStateNormal];
     [backCode addTarget:self action:@selector(backToMenu:) forControlEvents:UIControlEventTouchDown];

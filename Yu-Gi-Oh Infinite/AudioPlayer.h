@@ -13,6 +13,7 @@
 @interface AudioPlayer : NSObject <AVAudioSessionDelegate>
 
 @property (nonatomic) MPMoviePlayerController *audioPlayer;
+@property (nonatomic) AVAudioPlayer *backgroundMusicPlayer;
 
 -(instancetype)initWithBGMusic:(NSString*)name ofExtension:(NSString*)ext;
 -(void)setBGMusic:(NSString*)name ofExtension:(NSString*)ext;

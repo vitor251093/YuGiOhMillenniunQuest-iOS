@@ -183,8 +183,9 @@
         while (idCard == 0){
             idCard = (arc4random()%[cards count])+1;
             card = [self getCardWithID:idCard];
-            if (!([card isMonster] && card.attack>=min && card.attack<=max && ![card ultimateRare] && ![card uniqueCard]) &&
-                ![extra containsObject:@(idCard)])
+            
+            CGFloat som = card.attack + card.defense;
+            if (!(([card isMonster] && ![card ultimateRare] && ![card uniqueCard] && som>=min && som<=max) || [extra containsObject:@(idCard)]))
                 idCard = 0;
         }
         [dataRes addObject:@(idCard)];

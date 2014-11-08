@@ -914,6 +914,7 @@
 		63F66E1E1A0E97D9007E0CB9 /* 99551425.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63F66B1D1A0E97D9007E0CB9 /* 99551425.jpg */; };
 		63F66E1F1A0E97D9007E0CB9 /* 99597615.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63F66B1E1A0E97D9007E0CB9 /* 99597615.jpg */; };
 		63F66E201A0E97D9007E0CB9 /* 99721536.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 63F66B1F1A0E97D9007E0CB9 /* 99721536.jpg */; };
+		63F66E241A0E9FD0007E0CB9 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F66E231A0E9FD0007E0CB9 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1856,6 +1857,7 @@
 		63F66B1D1A0E97D9007E0CB9 /* 99551425.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 99551425.jpg; sourceTree = "<group>"; };
 		63F66B1E1A0E97D9007E0CB9 /* 99597615.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 99597615.jpg; sourceTree = "<group>"; };
 		63F66B1F1A0E97D9007E0CB9 /* 99721536.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 99721536.jpg; sourceTree = "<group>"; };
+		63F66E231A0E9FD0007E0CB9 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1863,6 +1865,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63F66E241A0E9FD0007E0CB9 /* AudioToolbox.framework in Frameworks */,
 				63E1F4A6194DEBB100D9371E /* OpenGLES.framework in Frameworks */,
 				63519F2518BA312600497DFB /* AVFoundation.framework in Frameworks */,
 				63519F2118B9BD2100497DFB /* MediaPlayer.framework in Frameworks */,
@@ -2836,6 +2839,7 @@
 		63519EDC18B9AA6100497DFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				63F66E231A0E9FD0007E0CB9 /* AudioToolbox.framework */,
 				63E1F4A5194DEBB100D9371E /* OpenGLES.framework */,
 				63519F2418BA312600497DFB /* AVFoundation.framework */,
 				63519F2018B9BD2100497DFB /* MediaPlayer.framework */,
