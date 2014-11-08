@@ -105,17 +105,17 @@
     [self addSubview:typeText];
     
     if ([playerCard isMonster]){
-        guardianStarText = [self generateTextFieldAt:CGRectMake(0,45,BASE_WINDOW_WIDTH/2,45)];
-        frameBase = guardianStarText.frame;
-        [guardianStarText setFrame:CGRectMake(frameBase.origin.x+3*windowHeight/75,frameBase.origin.y,
-                                              frameBase.size.width,frameBase.size.height)];
-        [guardianStarText setText:@"GUARDIAN STAR"];
-        guardianStarText.font = [UIFont systemFontOfSize:windowHeight/20];
-        
         CGFloat textY;
         CGFloat side = windowFrame.size.height/20;
         space =  windowFrame.size.height/9;
-    
+        
+        guardianStarText = [self generateTextFieldAt:CGRectMake(0,45,BASE_WINDOW_WIDTH/2,45)];
+        
+        frameBase = guardianStarText.frame;
+        [guardianStarText setText:@"GUARDIAN STAR"];
+        guardianStarText.font = [UIFont systemFontOfSize:windowHeight/20];
+        [guardianStarText setFrame:CGRectMake(frameBase.origin.x+3*windowHeight/75,frameBase.origin.y, frameBase.size.width,frameBase.size.height)];
+        
         guardianStarOneIcon = [[UIImageView alloc] initWithImage:[NSCard getGuardianStarSymbol:[playerCard guardianStarOne]]];
         [guardianStarOneIcon setFrame:CGRectMake(frameBase.origin.x + space/1.7, frameBase.origin.y + space,     side, side)];
         
