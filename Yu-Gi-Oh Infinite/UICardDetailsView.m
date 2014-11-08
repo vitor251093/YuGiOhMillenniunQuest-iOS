@@ -10,6 +10,12 @@
 
 #define BASE_WINDOW_HEIGHT 320
 #define BASE_WINDOW_WIDTH  480
+#define BASE_WINDOW_MARGIN 20
+
+#define BASE_CARD_LEFT_MARGIN    10
+#define BASE_CARD_HEIGHT         300
+#define BASE_CARD_PICTURE_WIDTH  419
+#define BASE_CARD_PICTURE_HEIGHT 610
 
 #define BASE_ANIMATION_MOVEMENT 1000
 
@@ -44,17 +50,17 @@
     CGRect newPos = [self generateRectOf:position];
     UITextView* result = [[UITextView alloc] initWithFrame:newPos];
     [result setTextColor:[UIColor whiteColor]];
-    [result setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+    [result setBackgroundColor:[UIColor colorWithWhite:0 alpha:0]];
     result.textAlignment = NSTextAlignmentJustified;
     result.editable = NO;
     return result;
 }
 
 -(void)initCard:(UIImage*)cardImage{
-    CGFloat x = (10*windowFrame.size.width)/BASE_WINDOW_WIDTH;
+    CGFloat x = (BASE_CARD_LEFT_MARGIN*windowFrame.size.width)/BASE_WINDOW_WIDTH;
     CGFloat y = windowFrame.origin.y + windowFrame.size.height/2-(315*windowFrame.size.height)/666;
-    CGFloat h = (300*windowFrame.size.height)/BASE_WINDOW_HEIGHT;
-    CGFloat w = (h*419)/610;
+    CGFloat h = (BASE_CARD_HEIGHT*windowFrame.size.height)/BASE_WINDOW_HEIGHT;
+    CGFloat w = (h*BASE_CARD_PICTURE_WIDTH)/BASE_CARD_PICTURE_HEIGHT;
     
     cardPlayer = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"FaceDown"]];
     [cardPlayer setFrame:CGRectMake(x,y,w,h)];
@@ -84,7 +90,7 @@
     CGFloat space;
     CGFloat windowHeight = windowFrame.size.height;
     
-    frameBase = [self generateRectOf:CGRectMake(0,20,0,0)];
+    frameBase = [self generateRectOf:CGRectMake(0,BASE_WINDOW_MARGIN,0,0)];
     UIImage* icon = [playerCard getTypeIcon];
     if (icon){
         typeIcon = [[UIImageView alloc] initWithImage:icon];
@@ -201,7 +207,7 @@
 -(id)initWithFrame:(CGRect)frame andCard:(NSCard*)card{
     self = [super initWithFrame:frame];
     if (self) {
-        windowFrame = CGRectMake(frame.origin.x, frame.origin.y+20, frame.size.width, frame.size.height-20);
+        windowFrame = CGRectMake(frame.origin.x, frame.origin.y+BASE_WINDOW_MARGIN, frame.size.width, frame.size.height-BASE_WINDOW_MARGIN);
         playerCard = card;
     }
     return self;
