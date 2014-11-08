@@ -42,9 +42,6 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    [self setNeedsStatusBarAppearanceUpdate];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

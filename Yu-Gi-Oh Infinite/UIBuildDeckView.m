@@ -175,7 +175,7 @@
     [returnButton setBackgroundImage:buildDeckFrame forState:UIControlStateHighlighted];
     
     CGFloat variation = windowFrame.size.width/orderTab.frame.size.width;
-    CGRect frame = CGRectMake(20,20,(side*variation)/2,side);
+    CGRect frame = CGRectMake(sideSpace,sideSpace,(side*variation)/2,side);
     [returnButton setFrame:frame];
     
     [returnButton setTitle:@"OK" forState:UIControlStateNormal];
@@ -190,7 +190,7 @@
     CGFloat size = [self numberOfDigitsInNumber:(int)[[gameSave box] count]];
     chestButton.titleLabel.font = [UIFont systemFontOfSize:side*size/8];
     
-    CGRect frame = CGRectMake(20+returnButton.frame.size.width, 20, side, side);
+    CGRect frame = CGRectMake(sideSpace+returnButton.frame.size.width, sideSpace, side, side);
     [chestButton setFrame:[UIUtilities addBorder:frame atPercent:10]];
     
     [chestButton setBackgroundImage:[UIImage imageNamed:@"Chest"] forState:UIControlStateNormal];
@@ -204,7 +204,7 @@
     deckButton = [[UIButton alloc] init];
     deckButton.titleLabel.font = [UIFont systemFontOfSize:side/2];
     
-    CGRect frame = CGRectMake(windowFrame.size.width-20-side-moveCardButton.frame.size.width, 20, side, side);
+    CGRect frame = CGRectMake(windowFrame.size.width-sideSpace-side-moveCardButton.frame.size.width, sideSpace, side, side);
     [deckButton setFrame:[UIUtilities addBorder:frame atPercent:10]];
     
     [deckButton setBackgroundImage:[UIImage imageNamed:@"Deck"] forState:UIControlStateNormal];
@@ -222,7 +222,7 @@
     [moveCardButton setBackgroundImage:buildDeckFrame forState:UIControlStateHighlighted];
     
     CGFloat variation = windowFrame.size.width/orderTab.frame.size.width;
-    CGRect frame = CGRectMake(windowFrame.size.width-20-(side*variation)/2, 20, (side*variation)/2, side);
+    CGRect frame = CGRectMake(windowFrame.size.width-sideSpace-(side*variation)/2, sideSpace, (side*variation)/2, side);
     [moveCardButton setFrame:[UIUtilities addBorder:frame atPercent:0]];
     
     [moveCardButton setTitle:@"⇵" forState:UIControlStateNormal];
@@ -246,7 +246,7 @@
         selColor = [UIColor colorWithRed:0.0 green:0.0 blue:100.0/255.0 alpha:0.3];
         [self setBackgroundColor:[UIColor blackColor]];
         
-        sideSpace = 20;
+        sideSpace = 10;
         tableFrame = CGRectMake(windowFrame.origin.x+sideSpace, windowFrame.origin.y+(windowFrame.size.height*14)/100,
                                 windowFrame.size.width-2*sideSpace, (windowFrame.size.height*86)/100 - sideSpace);
         

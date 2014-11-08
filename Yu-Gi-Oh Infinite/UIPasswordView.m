@@ -12,7 +12,6 @@
 
 #define WINDOW_BASE_WIDTH  480
 #define WINDOW_BASE_HEIGHT 320
-#define WINDOW_BASE_MARGIN 20
 
 #define CARD_BASE_HEIGHT        300
 #define CARD_BASE_MARGIN_SPACE  10
@@ -146,7 +145,7 @@
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        windowFrame = CGRectMake(frame.origin.x, frame.origin.y+WINDOW_BASE_MARGIN, frame.size.width, frame.size.height-WINDOW_BASE_MARGIN);
+        windowFrame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
     }
     return self;
 }

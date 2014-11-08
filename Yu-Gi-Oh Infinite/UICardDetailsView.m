@@ -10,7 +10,6 @@
 
 #define BASE_WINDOW_HEIGHT 320
 #define BASE_WINDOW_WIDTH  480
-#define BASE_WINDOW_MARGIN 20
 
 #define BASE_CARD_LEFT_MARGIN    10
 #define BASE_CARD_HEIGHT         300
@@ -106,39 +105,41 @@
     [self addSubview:typeText];
     
     if ([playerCard isMonster]){
-        guardianStarText = [self generateTextFieldAt:CGRectMake(0,42,BASE_WINDOW_WIDTH,45)];
+        guardianStarText = [self generateTextFieldAt:CGRectMake(0,45,BASE_WINDOW_WIDTH/2,45)];
         frameBase = guardianStarText.frame;
         [guardianStarText setFrame:CGRectMake(frameBase.origin.x+3*windowHeight/75,frameBase.origin.y,
                                               frameBase.size.width,frameBase.size.height)];
         [guardianStarText setText:@"GUARDIAN STAR"];
         guardianStarText.font = [UIFont systemFontOfSize:windowHeight/20];
-        [self addSubview:guardianStarText];
-    
+        
+        CGFloat textY;
         CGFloat side = windowFrame.size.height/20;
         space =  windowFrame.size.height/9;
     
         guardianStarOneIcon = [[UIImageView alloc] initWithImage:[NSCard getGuardianStarSymbol:[playerCard guardianStarOne]]];
-        [guardianStarOneIcon setFrame:CGRectMake(frameBase.origin.x + space/1.7, frameBase.origin.y + space,side,side)];
-        [self addSubview:guardianStarOneIcon];
-    
+        [guardianStarOneIcon setFrame:CGRectMake(frameBase.origin.x + space/1.7, frameBase.origin.y + space,     side, side)];
+        
         guardianStarTwoIcon = [[UIImageView alloc] initWithImage:[NSCard getGuardianStarSymbol:[playerCard guardianStarTwo]]];
-        [guardianStarTwoIcon setFrame:CGRectMake(frameBase.origin.x + space/1.7, frameBase.origin.y + space*1.7,side,side)];
-        [self addSubview:guardianStarTwoIcon];
-    
-        guardianStarOneText = [self generateTextFieldAt:CGRectMake(0,67,BASE_WINDOW_WIDTH,35)];
+        [guardianStarTwoIcon setFrame:CGRectMake(frameBase.origin.x + space/1.7, frameBase.origin.y + space*1.7, side, side)];
+        
+        guardianStarOneText = [self generateTextFieldAt:CGRectMake(0,70,BASE_WINDOW_WIDTH/2,35)];
+        guardianStarTwoText = [self generateTextFieldAt:CGRectMake(0,70,BASE_WINDOW_WIDTH/2,35)];
         frameBase = guardianStarOneText.frame;
-        [guardianStarOneText setFrame:CGRectMake(frameBase.origin.x + space/1.3 + side,frameBase.origin.y,
-                                                 frameBase.size.width,frameBase.size.height)];
+        
+        textY = guardianStarOneIcon.frame.origin.y + guardianStarOneIcon.frame.size.height/2 - frameBase.size.height/2;
+        [guardianStarOneText setFrame:CGRectMake(frameBase.origin.x + space/1.3 + side, textY, frameBase.size.width,frameBase.size.height)];
         [guardianStarOneText setText:[NSCard getGuardianStarName:[playerCard guardianStarOne]]];
         guardianStarOneText.font = [UIFont systemFontOfSize:windowHeight/22];
-        [self addSubview:guardianStarOneText];
-    
-        guardianStarTwoText = [self generateTextFieldAt:CGRectMake(0,67,BASE_WINDOW_WIDTH,35)];
-        frameBase = guardianStarTwoText.frame;
-        [guardianStarTwoText setFrame:CGRectMake(frameBase.origin.x + space/1.3 + side,frameBase.origin.y + space*0.7,
-                                                 frameBase.size.width, frameBase.size.height)];
+        
+        textY = guardianStarTwoIcon.frame.origin.y + guardianStarTwoIcon.frame.size.height/2 - frameBase.size.height/2;
+        [guardianStarTwoText setFrame:CGRectMake(frameBase.origin.x + space/1.3 + side, textY, frameBase.size.width, frameBase.size.height)];
         [guardianStarTwoText setText:[NSCard getGuardianStarName:[playerCard guardianStarTwo]]];
         guardianStarTwoText.font = [UIFont systemFontOfSize:windowHeight/22];
+        
+        [self addSubview:guardianStarText];
+        [self addSubview:guardianStarOneIcon];
+        [self addSubview:guardianStarOneText];
+        [self addSubview:guardianStarTwoIcon];
         [self addSubview:guardianStarTwoText];
     }
     
@@ -207,7 +208,7 @@
 -(id)initWithFrame:(CGRect)frame andCard:(NSCard*)card{
     self = [super initWithFrame:frame];
     if (self) {
-        windowFrame = CGRectMake(frame.origin.x, frame.origin.y+BASE_WINDOW_MARGIN, frame.size.width, frame.size.height-BASE_WINDOW_MARGIN);
+        windowFrame = CGRectMake(frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
         playerCard = card;
     }
     return self;
