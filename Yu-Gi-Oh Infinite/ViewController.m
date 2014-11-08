@@ -21,6 +21,11 @@
     frame = self.view.frame;
     CGFloat startButtonW = frame.size.height;
     CGFloat startButtonH = frame.size.width;
+    if (startButtonH>startButtonW){
+        CGFloat temp = startButtonH;
+        startButtonH = startButtonW;
+        startButtonW = temp;
+    }
     frame = CGRectMake(0,0,startButtonW,startButtonH);
     
     playerViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:[[NSBundle mainBundle] URLForResource:@"opening" withExtension:@"mp4"]];

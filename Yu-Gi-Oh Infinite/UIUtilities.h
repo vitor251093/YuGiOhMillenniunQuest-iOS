@@ -14,18 +14,22 @@
 extern AudioPlayer* audioPlayer;
 extern NSGame* gameSave;
 
+@interface UIImage (SuperUIImage)
+-(UIImage*)imageWithScaledRate:(CGFloat)resizeRate;
+-(UIImage*)imageWithCapInsets;
+@end
+
+@interface NSArray (SuperNSArray)
+-(NSMutableArray*)removeDuplicates;
+@end
+
 @interface UIUtilities : NSObject
 
 +(NSString*)intToString:(int)integer WithHouses:(int)houses;
 
-+(NSMutableArray*)removeDuplicates:(NSArray*)array;
-
 +(void)playSound:(NSString*)name ofType:(NSString*)ext;
 
 +(CGFloat)widthOfString:(NSString*)string withFont:(UIFont*)font;
-
-+(UIImage*)imageWithImage:(UIImage*)image scaledRate:(CGFloat)resizeRate;
-+(UIImage*)insertCapInsetsIn:(UIImage*)image;
 
 +(CGRect)addBorder:(CGRect)rect atPercent:(CGFloat)perc;
 

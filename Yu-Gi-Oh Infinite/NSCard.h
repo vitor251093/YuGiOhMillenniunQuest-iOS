@@ -52,7 +52,7 @@ typedef enum GuardianStarEffect
 @property(nonatomic, retain) NSString *rarity;
 @property(nonatomic, retain) NSString *circulation;
 @property(nonatomic, retain) NSString *cardId;
-@property(nonatomic, retain) NSString *description;
+@property(nonatomic, retain) NSString *cardDescription;
 @property(nonatomic, retain) NSString *serial;
 @property(nonatomic, retain) NSString *type;
 @property(nonatomic) int cardID;

@@ -55,7 +55,7 @@
     [self setRarity:[card objectForKey:@"Rarity"]];
     [self setCirculation:[card objectForKey:@"Circulation"]];
     [self setCardId:[card objectForKey:@"Card ID"]];
-    [self setDescription:[card objectForKey:@"Description"]];
+    [self setCardDescription:[card objectForKey:@"Description"]];
     [self setSerial:[card objectForKey:@"Serial"]];
     [self setAttribute:[card objectForKey:@"Attribute"]];
     [self setLevel:[card objectForKey:@"Level"]];

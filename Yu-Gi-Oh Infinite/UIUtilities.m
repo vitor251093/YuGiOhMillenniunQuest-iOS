@@ -11,6 +11,31 @@
 NSGame* gameSave;
 AudioPlayer* audioPlayer;
 
+@implementation UIImage (SuperUIImage)
+-(UIImage*)imageWithScaledRate:(CGFloat)resizeRate{
+    CGSize newSize =CGSizeMake(self.size.width*resizeRate, self.size.height*resizeRate);
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [self drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+-(UIImage*)imageWithCapInsets{
+    UIEdgeInsets inactiveInsets = UIEdgeInsetsMake(self.size.height/2, self.size.width/2,
+                                                   self.size.height/2, self.size.width/2);
+    return [self resizableImageWithCapInsets:inactiveInsets];
+}
+@end
+
+@implementation NSArray (SuperNSArray)
+-(NSMutableArray*)removeDuplicates{
+    NSMutableArray* newOne = [[NSMutableArray alloc] init];
+    for (NSString* value in self)
+        if (![newOne containsObject:value]) [newOne addObject:value];
+    return newOne;
+}
+@end
+
 @implementation UIUtilities
 
 +(NSString*)intToString:(int)integer WithHouses:(int)houses{
@@ -18,13 +43,6 @@ AudioPlayer* audioPlayer;
     while ([result length] < houses)
         result = [NSString stringWithFormat:@"0%@",result];
     return result;
-}
-
-+(NSMutableArray*)removeDuplicates:(NSArray*)array{
-    NSMutableArray* newOne = [[NSMutableArray alloc] init];
-    for (NSString* value in array)
-        if (![newOne containsObject:value]) [newOne addObject:value];
-    return newOne;
 }
 
 +(void)playSound:(NSString*)name ofType:(NSString*)ext{
@@ -38,20 +56,6 @@ AudioPlayer* audioPlayer;
 +(CGFloat)widthOfString:(NSString*)string withFont:(UIFont*)font{
 	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
 	return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
-}
-
-+(UIImage*)imageWithImage:(UIImage*)image scaledRate:(CGFloat)resizeRate{
-    CGSize newSize =CGSizeMake(image.size.width*resizeRate,image.size.height*resizeRate);
-    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
-}
-+(UIImage*)insertCapInsetsIn:(UIImage*)image{
-    UIEdgeInsets inactiveInsets = UIEdgeInsetsMake(image.size.height/2,image.size.width/2,
-                                                   image.size.height/2,image.size.width/2);
-    return [image resizableImageWithCapInsets:inactiveInsets];
 }
 
 +(CGRect)addBorder:(CGRect)rect atPercent:(CGFloat)perc{

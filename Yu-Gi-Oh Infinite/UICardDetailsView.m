@@ -70,8 +70,8 @@
 -(void)loadBackground{
     CGFloat scale = (0.3*windowFrame.size.height)/BASE_WINDOW_HEIGHT;
     UIImage *passwordFrame = [UIImage imageNamed:@"passwordFrame"];
-    passwordFrame = [UIUtilities imageWithImage:passwordFrame scaledRate:scale];
-    passwordFrame = [UIUtilities insertCapInsetsIn:passwordFrame];
+    passwordFrame = [passwordFrame imageWithScaledRate:scale];
+    passwordFrame = [passwordFrame imageWithCapInsets];
     
     BGType = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,8,BASE_WINDOW_WIDTH,45)]];
     [BGType setImage:passwordFrame];
@@ -148,7 +148,7 @@
     descriptionText = [self generateTextViewAt:CGRectMake(0,150,BASE_WINDOW_WIDTH,35)];
     [descriptionText setFrame:CGRectMake(frameBase.origin.x, descriptionText.frame.origin.y,
                                          BGDescription.frame.size.width - space*2,BGDescription.frame.size.height)];
-    [descriptionText setText:[playerCard description]];
+    [descriptionText setText:[playerCard cardDescription]];
     descriptionText.font = [UIFont systemFontOfSize:windowHeight/22];
     [self addSubview:descriptionText];
 }

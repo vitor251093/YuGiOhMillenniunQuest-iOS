@@ -14,11 +14,14 @@
 #define WINDOW_BASE_HEIGHT 320
 #define WINDOW_BASE_MARGIN 20
 
-#define CARD_BASE_HEIGHT       300
-#define CARD_BASE_MARGIN_SPACE 10
+#define CARD_BASE_HEIGHT        300
+#define CARD_BASE_MARGIN_SPACE  10
+#define CARD_ANIMATION_DURATION 0.4
 
 #define BASE_CARD_PICTURE_WIDTH  419
 #define BASE_CARD_PICTURE_HEIGHT 610
+
+#define BUY_CARD_BUTTON_INDEX 0
 
 @implementation UIPasswordView
 
@@ -73,7 +76,7 @@
 }
 -(void)loadCard:(UIImage*)card{
     [UIUtilities playSound:@"flipCard" ofType:@"wav"];
-    [UIView transitionWithView:cardPlayer duration:0.4
+    [UIView transitionWithView:cardPlayer duration:CARD_ANIMATION_DURATION
                        options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
                            cardPlayer.image = card;
                        } completion:nil];
@@ -81,8 +84,7 @@
 -(void)loadBackground{
     CGFloat scale = (0.3*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
     UIImage *passwordFrame = [UIImage imageNamed:@"passwordFrame"];
-    passwordFrame = [UIUtilities imageWithImage:passwordFrame scaledRate:scale];
-    passwordFrame = [UIUtilities insertCapInsetsIn:passwordFrame];
+    passwordFrame = [[passwordFrame imageWithScaledRate:scale] imageWithCapInsets];
     
     BGStarts = [[UIImageView alloc] initWithFrame:[self generateRectOf:CGRectMake(0,8,WINDOW_BASE_WIDTH,75)]];
     [BGStarts setImage:passwordFrame];
@@ -123,8 +125,7 @@
     CGFloat scale = (0.05*windowFrame.size.height)/WINDOW_BASE_HEIGHT;
     
     UIImage* tryButtonFrame = [UIImage imageNamed:@"tryButtonFrame"];
-    tryButtonFrame = [UIUtilities imageWithImage:tryButtonFrame scaledRate:scale];
-    tryButtonFrame = [UIUtilities insertCapInsetsIn:tryButtonFrame];
+    tryButtonFrame = [[tryButtonFrame imageWithScaledRate:scale] imageWithCapInsets];
     
     tryCode = [self generateButtonAt:CGRectMake(30,215,200,70) withTitle:@"BUY"];
     tryCode.titleLabel.font = [UIFont systemFontOfSize:(60*baseBlockWidth)/WINDOW_BASE_WIDTH];
@@ -133,8 +134,7 @@
     [self addSubview:tryCode];
     
     UIImage* backButtonFrame = [UIImage imageNamed:@"backButtonFrame"];
-    backButtonFrame = [UIUtilities imageWithImage:backButtonFrame scaledRate:scale];
-    backButtonFrame = [UIUtilities insertCapInsetsIn:backButtonFrame];
+    backButtonFrame = [[backButtonFrame imageWithScaledRate:scale] imageWithCapInsets];
     
     backCode = [self generateButtonAt:CGRectMake(250,215,200,70) withTitle:@"BACK"];
     backCode.titleLabel.font = [UIFont systemFontOfSize:(60*baseBlockWidth)/WINDOW_BASE_WIDTH];
@@ -201,7 +201,7 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0 && alertView == buyingAlert){
+    if (buttonIndex == BUY_CARD_BUTTON_INDEX && alertView == buyingAlert){
         [UIUtilities playSound:@"selectAction" ofType:@"wav"];
         [gameSave setStarsNumber:[gameSave starsNumber]-value];
         [starCount setText:[NSString stringWithFormat:@"✯x %d",[gameSave starsNumber]]];

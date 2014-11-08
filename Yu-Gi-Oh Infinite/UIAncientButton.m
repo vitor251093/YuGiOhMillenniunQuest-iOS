@@ -33,20 +33,22 @@
         
         //Button Background
         CGFloat scale = (0.5*screenRect.size.height)/BASE_WINDOW_HEIGHT;
+        
         inactiveImage = [UIImage imageNamed:@"ButtonInactive"];
-        activeImage = [UIImage imageNamed:@"ButtonActive"];
-        inactiveImage = [UIUtilities imageWithImage:inactiveImage scaledRate:scale];
-        activeImage = [UIUtilities imageWithImage:activeImage scaledRate:scale];
-        inactiveImage = [UIUtilities insertCapInsetsIn:inactiveImage];
-        activeImage = [UIUtilities insertCapInsetsIn:activeImage];
+        inactiveImage = [inactiveImage imageWithScaledRate:scale];
+        inactiveImage = [inactiveImage imageWithCapInsets];
         [self setBackgroundImage:inactiveImage forState:UIControlStateNormal];
+        
+        activeImage   = [UIImage imageNamed:@"ButtonActive"];
+        activeImage   = [activeImage   imageWithScaledRate:scale];
+        activeImage   = [activeImage   imageWithCapInsets];
         [self setBackgroundImage:activeImage forState:UIControlStateHighlighted];
         
         //Button Text Color
         UIColor* inactiveColor = [UIColor colorWithRed:136/255.0 green:126/255.0 blue:130/255.0 alpha:1.0];
-        UIColor* activeColor = [UIColor colorWithRed:147/255.0 green:225/255.0 blue:148/255.0 alpha:1.0];
+        UIColor* activeColor   = [UIColor colorWithRed:147/255.0 green:225/255.0 blue:148/255.0 alpha:1.0];
         [self setTitleColor:inactiveColor forState:UIControlStateNormal];
-        [self setTitleColor:activeColor forState:UIControlStateHighlighted];
+        [self setTitleColor:activeColor   forState:UIControlStateHighlighted];
         
         //Button Size and Position
         width = [UIUtilities widthOfString:text withFont:littleText]+(BASE_BUTTON_WIDTH*screenRect.size.width)/BASE_WINDOW_WIDTH;

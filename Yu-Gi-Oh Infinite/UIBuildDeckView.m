@@ -105,7 +105,7 @@
         deck = [self orderMutableArray:[[gameSave deck] mutableCopy] By:attribute];
         [deckTable reloadData];
     }else{
-        box = [self orderMutableArray:[UIUtilities removeDuplicates:[gameSave box]] By:attribute];
+        box = [self orderMutableArray:[[gameSave box] removeDuplicates] By:attribute];
         [boxTable reloadData];
     }
 }
@@ -252,15 +252,15 @@
         
         CGFloat scale = (0.3*windowFrame.size.height)/320;
         buildDeckFrame = [UIImage imageNamed:@"buildDeckFrame"];
-        buildDeckFrame = [UIUtilities imageWithImage:buildDeckFrame scaledRate:scale];
-        buildDeckFrame = [UIUtilities insertCapInsetsIn:buildDeckFrame];
+        buildDeckFrame = [buildDeckFrame imageWithScaledRate:scale];
+        buildDeckFrame = [buildDeckFrame imageWithCapInsets];
     }
     return self;
 }
 -(void)drawRect:(CGRect)rect{
     boxTable = [self generateTableView];
     deckTable = [self generateTableView];
-    box = [UIUtilities removeDuplicates:[gameSave box]];
+    box = [[gameSave box] removeDuplicates];
     deck = [[gameSave deck] mutableCopy];
     [self addSubview:boxTable];
     
