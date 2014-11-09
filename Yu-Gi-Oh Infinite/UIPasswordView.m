@@ -49,6 +49,7 @@
 -(UITextField*)generateTextFieldAt:(CGRect)position{
     CGRect newPos = [self generateRectOf:position];
     UITextField* result = [[UITextField alloc] initWithFrame:newPos];
+    [result setKeyboardType:UIKeyboardTypePhonePad];
     [result setTextColor:[UIColor whiteColor]];
     [result adjustsFontSizeToFitWidth];
     return result;
@@ -204,7 +205,7 @@
         [UIUtilities playSound:@"selectAction" ofType:@"wav"];
         [gameSave setStarsNumber:[gameSave starsNumber]-value];
         [starCount setText:[NSString stringWithFormat:@"✯x %d",[gameSave starsNumber]]];
-        [gameSave addCardToBox:[[gameSave.gameCards getCardWithSerial:[passwordInput text]] cardID]];
+        [gameSave addCardToBox:(int)[[gameSave.gameCards getCardWithSerial:[passwordInput text]] cardID]];
     }
     if (alertView != invalidAlert) [self loadCard:[UIImage imageNamed:@"FaceDown"]];
     value = 0;

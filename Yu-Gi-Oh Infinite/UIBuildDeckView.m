@@ -408,7 +408,7 @@
     
         //Cards in Deck
         UITextField* deckText = [self generateTextFieldAtFrame:CGRectMake(pos,cellHeight/2-cellHeight/10,(cellHeight*11)/10,(cellHeight*2)/3)];
-        deckText.text = [NSString stringWithFormat:@"%d",[gameSave countCardAtDeck:[card cardID]]];
+        deckText.text = [NSString stringWithFormat:@"%d",[gameSave countCardAtDeck:(int)[card cardID]]];
         deckText.font = [UIFont systemFontOfSize:cellHeight/3.0];
         [cardCell addSubview:deckText];
     
@@ -420,7 +420,7 @@
     
         //Cards in Box
         UITextField* boxText = [self generateTextFieldAtFrame:CGRectMake(pos,cellHeight/2-cellHeight/10,(cellHeight*11)/10,(cellHeight*2)/3)];
-        boxText.text = [NSString stringWithFormat:@"%d",[gameSave countCardAtBox:[card cardID]]];
+        boxText.text = [NSString stringWithFormat:@"%d",[gameSave countCardAtBox:(int)[card cardID]]];
         boxText.font = [UIFont systemFontOfSize:cellHeight/3.0];
         [cardCell addSubview:boxText];
     }
@@ -485,24 +485,23 @@
     //Card ID
     UITextField* idText = [self generateTextFieldAtFrame:CGRectMake(15, 0, 200, cellHeight)];
     idText.textAlignment = NSTextAlignmentLeft;
-    idText.text = [UIUtilities intToString:[card cardID] WithHouses:4];
+    idText.text = [UIUtilities intToString:(int)[card cardID] WithHouses:4];
     idText.font = [UIFont systemFontOfSize:cellHeight/2.0];
     [cardCell addSubview:idText];
     
     //Card Name
     CGFloat idLenght = [UIUtilities widthOfString:idText.text withFont:idText.font]+25;
-    pos -= cellHeight + idLenght;
-    UIFont* nameFont = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:(20*windowFrame.size.height)/320];
+    UIFont* nameFont = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:(22*windowFrame.size.height)/320];
     CGFloat widthOfName = [UIUtilities widthOfString:[card name] withFont:nameFont];
-    if (widthOfName > pos){
-        nameFont = [UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:(22*windowFrame.size.height*pos)/(320*widthOfName)];
-        widthOfName = [UIUtilities widthOfString:[card name] withFont:nameFont];
-    }
+    
+    CGFloat resizeRate = 0.0;
+    pos -= (cellHeight)/3 + idLenght;
+    if (widthOfName > pos) resizeRate = 1 - widthOfName/pos;
     
     UITextField* nameText = [self generateTextFieldAtFrame:CGRectMake(idLenght, 0, widthOfName + 50, cellHeight)];
-    nameText.font = nameFont;
     nameText.textAlignment = NSTextAlignmentLeft;
-    nameText.text = [card name];
+    NSDictionary* nameAttributes = @{NSFontAttributeName:nameFont, NSExpansionAttributeName:@(resizeRate)};
+    nameText.attributedText = [[NSAttributedString alloc] initWithString:[card name] attributes:nameAttributes];
     [cardCell addSubview:nameText];
     cardCell.textLabel.text = @"";
     cardCell.exclusiveTouch = NO;

@@ -29,59 +29,52 @@
     if (new){
         if (idCard <= [cards count]){
             [new setCard:[(NSDictionary*)cards[idCard-1] copy]];
-            _cardID = idCard;
+            [new setCardID:idCard];
         } else return nil;
-    }
-    return self;
+    } return self;
 }
 -(NSCard*)getCardWithSerial:(NSString*)serial{
     NSCard* new = [super init];
     if (new){
-        [new setName:@"x"];
         for (int x=0;x<[cards count];x++){
             NSDictionary* card = cards[x];
             if ([[card objectForKey:@"Serial"] isEqualToString:serial]){
                 [new setCard:card];
-                _cardID = x;
-                break;
+                [new setCardID:x+1];
+                return self;
             }
-        }
-        if ([[new name] isEqualToString:@"x"]) return nil;
-    }
-    return self;
+        } return nil;
+    } return nil;
 }
 -(void)setCard:(NSDictionary*)card{
-    [self setName:[card objectForKey:@"Name"]];
-    [self setRarity:[card objectForKey:@"Rarity"]];
-    [self setCirculation:[card objectForKey:@"Circulation"]];
-    [self setCardId:[card objectForKey:@"Card ID"]];
-    [self setCardDescription:[card objectForKey:@"Description"]];
-    [self setSerial:[card objectForKey:@"Serial"]];
-    [self setAttribute:[card objectForKey:@"Attribute"]];
-    [self setLevel:[card objectForKey:@"Level"]];
-    [self setType:[card objectForKey:@"Type"]];
-    [self setAttack:[[card objectForKey:@"Attack"] intValue]];
-    [self setDefense:[[card objectForKey:@"Defense"] intValue]];
-    [self setGuardianStarOne:[NSCard getGuardianStarForString:[card objectForKey:@"Guardian Star 1"]]];
-    [self setGuardianStarTwo:[NSCard getGuardianStarForString:[card objectForKey:@"Guardian Star 2"]]];
-    [self setIsAnimal:[[card objectForKey:@"isAnimal"] intValue]];
-    [self setIsDarkMagic:[[card objectForKey:@"isDarkMagic"] intValue]];
-    [self setIsDarkSpellcaster:[[card objectForKey:@"isDarkSpellcaster"] intValue]];
-    [self setIsDragon:[[card objectForKey:@"isDragon"] intValue]];
-    [self setIsElf:[[card objectForKey:@"isElf"] intValue]];
-    [self setIsFemale:[[card objectForKey:@"isFemale"] intValue]];
-    [self setIsHFDMaterial:[[card objectForKey:@"isHFDMaterial"] intValue]];
-    [self setIsJar:[[card objectForKey:@"isJar"] intValue]];
-    [self setIsKoumoriMaterial:[[card objectForKey:@"isKoumoriMaterial"] intValue]];
+    [self setName:              [card objectForKey:@"Name"]];
+    [self setRarity:            [card objectForKey:@"Rarity"]];
+    [self setCardDescription:   [card objectForKey:@"Description"]];
+    [self setSerial:            [card objectForKey:@"Serial"]];
+    [self setAttribute:         [card objectForKey:@"Attribute"]];
+    [self setLevel:             [card objectForKey:@"Level"]];
+    [self setType:              [card objectForKey:@"Type"]];
+    [self setAttack:            [[card objectForKey:@"Attack"] intValue]];
+    [self setDefense:           [[card objectForKey:@"Defense"] intValue]];
+    [self setGuardianStarOne:   [NSCard getGuardianStarForString:[card objectForKey:@"Guardian Star 1"]]];
+    [self setGuardianStarTwo:   [NSCard getGuardianStarForString:[card objectForKey:@"Guardian Star 2"]]];
+    [self setIsAnimal:          [[card objectForKey:@"isAnimal"] intValue]];
+    [self setIsDarkMagic:       [[card objectForKey:@"isDarkMagic"] intValue]];
+    [self setIsDarkSpellcaster: [[card objectForKey:@"isDarkSpellcaster"] intValue]];
+    [self setIsDragon:          [[card objectForKey:@"isDragon"] intValue]];
+    [self setIsElf:             [[card objectForKey:@"isElf"] intValue]];
+    [self setIsFemale:          [[card objectForKey:@"isFemale"] intValue]];
+    [self setIsHFDMaterial:     [[card objectForKey:@"isHFDMaterial"] intValue]];
+    [self setIsJar:             [[card objectForKey:@"isJar"] intValue]];
+    [self setIsKoumoriMaterial: [[card objectForKey:@"isKoumoriMaterial"] intValue]];
     [self setIsMysticalMaterial:[[card objectForKey:@"isMysticalMaterial"] intValue]];
-    [self setIsPyro:[[card objectForKey:@"isPyro"] intValue]];
-    [self setIsTurtle:[[card objectForKey:@"isTurtle"] intValue]];
-    [self setIsWinged:[[card objectForKey:@"isWinged"] intValue]];
+    [self setIsPyro:            [[card objectForKey:@"isPyro"] intValue]];
+    [self setIsTurtle:          [[card objectForKey:@"isTurtle"] intValue]];
+    [self setIsWinged:          [[card objectForKey:@"isWinged"] intValue]];
 }
 
-+(int)getNumberOfCards{
-    NSArray* data = [[NSArray alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"DuelMonsterCards" withExtension:@"plist"]];
-    return (int)[data count];
+-(int)getNumberOfCards{
+    return (int)[cards count];
 }
 -(UIImage*)image{
     return [NSCard getCardPicture:[self serial]];
@@ -302,228 +295,228 @@
         return [self getCardWithSerial:@"61036413"];
     
     
-    if ([self canFuseWith:fusionMaterial WithType:@"Thunder" andCard:@"57046845" withMaxAttack:2800]) //Gilford the Lightning
-        return [self getCardWithSerial:@"36354007"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"83464209" withMaxAttack:1100]) //Mystical Sheep #1
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend"           andCard:@"83464209" withMaxAttack:1100]) //Mystical Sheep #1
         return [self getCardWithSerial:@"30451366"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"83464209" withMaxAttack:1100]) //Mystical Sheep #1
+    if ([self canFuseWith:fusionMaterial WithType:@"Zombie"          andCard:@"83464209" withMaxAttack:1100]) //Mystical Sheep #1
         return [self getCardWithSerial:@"30451366"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"53830602" withMaxAttack:1200]) //Darkworld Thorns
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend"           andCard:@"53830602" withMaxAttack:1200]) //Darkworld Thorns
         return [self getCardWithSerial:@"43500484"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"07892180" withMaxAttack:1200]) //Kappa Avenger
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend"           andCard:@"07892180" withMaxAttack:1200]) //Kappa Avenger
         return [self getCardWithSerial:@"48109103"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andCard:@"94675535" withMaxAttack:1300]) //Mon Larvas
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andCard:@"94675535" withMaxAttack:1300]) //Mon Larvas
         return [self getCardWithSerial:@"07225792"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"02863439" withMaxAttack:1300]) //Fiend Reflection 1
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast"    andCard:@"02863439" withMaxAttack:1300]) //Fiend Reflection 1
         return [self getCardWithSerial:@"68870276"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"55337339" withMaxAttack:1300]) //Fiend Reflection 1
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast"    andCard:@"55337339" withMaxAttack:1300]) //Fiend Reflection 1
         return [self getCardWithSerial:@"68870276"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"15150371" withMaxAttack:1300]) //Fiend Reflection 1
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast"    andCard:@"15150371" withMaxAttack:1300]) //Fiend Reflection 1
         return [self getCardWithSerial:@"68870276"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andCard:@"98049915" withMaxAttack:1400]) //Lord of the Lamp
+    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster"     andCard:@"98049915" withMaxAttack:1400]) //Lord of the Lamp
         return [self getCardWithSerial:@"99510761"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"68963107" withMaxAttack:1400]) //Spirit of the Books
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast"    andCard:@"68963107" withMaxAttack:1400]) //Spirit of the Books
         return [self getCardWithSerial:@"14037717"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"48109103" withMaxAttack:1500]) //Hyosube
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua"            andCard:@"48109103" withMaxAttack:1500]) //Hyosube
         return [self getCardWithSerial:@"02118022"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"07892180" withMaxAttack:1500]) //Hyosube
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua"            andCard:@"07892180" withMaxAttack:1500]) //Hyosube
         return [self getCardWithSerial:@"02118022"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"27094595" withMaxAttack:1500]) //The Snake Hair
+    if ([self canFuseWith:fusionMaterial WithType:@"Zombie"          andCard:@"27094595" withMaxAttack:1500]) //The Snake Hair
         return [self getCardWithSerial:@"29491031"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andCard:@"77456781" withMaxAttack:1600]) //Fire Kraken
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andCard:@"77456781" withMaxAttack:1600]) //Fire Kraken
         return [self getCardWithSerial:@"46534755"];
     if ([self canFuseWith:fusionMaterial WithType:@"DarkSpellcaster" andCard:@"15303296" withMaxAttack:1600]) //Ryu-Kishin Powered
         return [self getCardWithSerial:@"24611934"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"15303296" withMaxAttack:1650]) //Whiptail Crow
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast"    andCard:@"15303296" withMaxAttack:1650]) //Whiptail Crow
         return [self getCardWithSerial:@"91996584"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fairy" andCard:@"64501875" withMaxAttack:1750]) //Musician King
+    if ([self canFuseWith:fusionMaterial WithType:@"Fairy"           andCard:@"64501875" withMaxAttack:1750]) //Musician King
         return [self getCardWithSerial:@"56907389"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fairy" andCard:@"38942059" withMaxAttack:1750]) //Musician King
+    if ([self canFuseWith:fusionMaterial WithType:@"Fairy"           andCard:@"38942059" withMaxAttack:1750]) //Musician King
         return [self getCardWithSerial:@"56907389"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andCard:@"67629977" withMaxAttack:1800]) //7 Colored Fish
+    if ([self canFuseWith:fusionMaterial WithType:@"Fish"            andCard:@"67629977" withMaxAttack:1800]) //7 Colored Fish
         return [self getCardWithSerial:@"23771716"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andCard:@"21347810" withMaxAttack:1800]) //7 Colored Fish
+    if ([self canFuseWith:fusionMaterial WithType:@"Fish"            andCard:@"21347810" withMaxAttack:1800]) //7 Colored Fish
         return [self getCardWithSerial:@"23771716"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"58314394" withMaxAttack:1850]) //Amphibious Bugroth
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua"            andCard:@"58314394" withMaxAttack:1850]) //Amphibious Bugroth
         return [self getCardWithSerial:@"40173854"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Insect" andCard:@"60802233" withMaxAttack:1900]) //Kwagar Hercules
+    if ([self canFuseWith:fusionMaterial WithType:@"Insect"          andCard:@"60802233" withMaxAttack:1900]) //Kwagar Hercules
         return [self getCardWithSerial:@"95144193"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andCard:@"85326399" withMaxAttack:1900]) //Kaminari Attack
+    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster"     andCard:@"85326399" withMaxAttack:1900]) //Kaminari Attack
         return [self getCardWithSerial:@"09653271"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"14708569" withMaxAttack:2000]) //Rose Spectre of Dunn
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend"           andCard:@"14708569" withMaxAttack:2000]) //Rose Spectre of Dunn
         return [self getCardWithSerial:@"32485271"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"28003512" withMaxAttack:2100]) //Punished Eagle
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast"    andCard:@"28003512" withMaxAttack:2100]) //Punished Eagle
         return [self getCardWithSerial:@"74703140"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Reptile" andCard:@"92667214" withMaxAttack:2200]) //Soul Hunter
+    if ([self canFuseWith:fusionMaterial WithType:@"Reptile"         andCard:@"92667214" withMaxAttack:2200]) //Soul Hunter
         return [self getCardWithSerial:@"72869010"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Reptile" andCard:@"93889755" withMaxAttack:2200]) //Soul Hunter
+    if ([self canFuseWith:fusionMaterial WithType:@"Reptile"         andCard:@"93889755" withMaxAttack:2200]) //Soul Hunter
         return [self getCardWithSerial:@"72869010"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Warrior" andCard:@"28003512" withMaxAttack:2200]) //Judge Man
+    if ([self canFuseWith:fusionMaterial WithType:@"Warrior"         andCard:@"28003512" withMaxAttack:2200]) //Judge Man
         return [self getCardWithSerial:@"30113682"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"40374923" withMaxAttack:2200]) //Great Mammoth of Goldfine
+    if ([self canFuseWith:fusionMaterial WithType:@"Zombie"          andCard:@"40374923" withMaxAttack:2200]) //Great Mammoth of Goldfine
         return [self getCardWithSerial:@"54622031"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andCard:@"71625222" withMaxAttack:2400]) //Thousand Dragon
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andCard:@"71625222" withMaxAttack:2400]) //Thousand Dragon
         return [self getCardWithSerial:@"41462083"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"55337339" withMaxAttack:2500]) //Summoned Skull
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend"           andCard:@"55337339" withMaxAttack:2500]) //Summoned Skull
         return [self getCardWithSerial:@"70781052"];
     if ([self canFuseWith:fusionMaterial WithType:@"DarkSpellcaster" andCard:@"97454149" withMaxAttack:2500]) //Dark Magician
         return [self getCardWithSerial:@"46986414"];
-    
-    if ([self canFuseWith:fusionMaterial WithType:@"Plant" andType:@"Pyro" withMaxAttack:700])
+    if ([self canFuseWith:fusionMaterial WithType:@"Thunder"         andCard:@"57046845" withMaxAttack:2800]) //Gilford the Lightning
+        return [self getCardWithSerial:@"36354007"];
+
+    if ([self canFuseWith:fusionMaterial WithType:@"Plant"           andType:@"Pyro"             withMaxAttack:700])
         return [self getCardWithSerial:@"53293545"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Zombie" withMaxAttack:700])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Zombie"           withMaxAttack:700])
         return [self getCardWithSerial:@"53581214"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Elf" andType:@"MysticalMaterial" withMaxAttack:800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Elf"             andType:@"MysticalMaterial" withMaxAttack:800])
         return [self getCardWithSerial:@"15025844"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Insect" andType:@"Warrior" withMaxAttack:800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Insect"          andType:@"Warrior"          withMaxAttack:800])
         return [self getCardWithSerial:@"33413638"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Reptile" andType:@"Thunder" withMaxAttack:850])
+    if ([self canFuseWith:fusionMaterial WithType:@"Reptile"         andType:@"Thunder"          withMaxAttack:850])
         return [self getCardWithSerial:@"55875323"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Rock" withMaxAttack:900])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Rock"             withMaxAttack:900])
         return [self getCardWithSerial:@"40826495"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Plant" andType:@"Reptile" withMaxAttack:1000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Plant"           andType:@"Reptile"          withMaxAttack:1000])
         return [self getCardWithSerial:@"29802344"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Plant" andType:@"Zombie" withMaxAttack:1000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Plant"           andType:@"Zombie"           withMaxAttack:1000])
         return [self getCardWithSerial:@"17733394"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Female" withMaxAttack:1000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Female"           withMaxAttack:1000])
         return [self getCardWithSerial:@"27132350"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Zombie" withMaxAttack:1000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Zombie"           withMaxAttack:1000])
         return [self getCardWithSerial:@"58528964"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Turtle" andType:@"Beast" withMaxAttack:1000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Turtle"          andType:@"Beast"            withMaxAttack:1000])
         return [self getCardWithSerial:@"37313348"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Warrior" withMaxAttack:1100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Warrior"          withMaxAttack:1100])
         return [self getCardWithSerial:@"09197735"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andType:@"Zombie" withMaxAttack:1100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fish"            andType:@"Zombie"           withMaxAttack:1100])
         return [self getCardWithSerial:@"34290067"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Warrior" withMaxAttack:1100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Warrior"          withMaxAttack:1100])
         return [self getCardWithSerial:@"37421579"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Female" andType:@"Fish" withMaxAttack:1150])
+    if ([self canFuseWith:fusionMaterial WithType:@"Female"          andType:@"Fish"             withMaxAttack:1150])
         return [self getCardWithSerial:@"20848593"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Female" andType:@"Fish" withMaxAttack:1200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Female"          andType:@"Fish"             withMaxAttack:1200])
         return [self getCardWithSerial:@"75376965"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Machine" withMaxAttack:1200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Machine"          withMaxAttack:1200])
         return [self getCardWithSerial:@"08471389"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Thunder" withMaxAttack:1200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Thunder"          withMaxAttack:1200])
         return [self getCardWithSerial:@"45042329"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Warrior" withMaxAttack:1200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Warrior"          withMaxAttack:1200])
         return [self getCardWithSerial:@"70681994"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Rock" andType:@"Zombie" withMaxAttack:1200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Rock"            andType:@"Zombie"           withMaxAttack:1200])
         return [self getCardWithSerial:@"72269672"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Warrior" andType:@"Zombie" withMaxAttack:1200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Warrior"         andType:@"Zombie"           withMaxAttack:1200])
         return [self getCardWithSerial:@"31339260"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andType:@"Warrior" withMaxAttack:1250])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fish"            andType:@"Warrior"          withMaxAttack:1250])
         return [self getCardWithSerial:@"69750536"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andType:@"Thunder" withMaxAttack:1250])
+    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster"     andType:@"Thunder"          withMaxAttack:1250])
         return [self getCardWithSerial:@"11714098"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Warrior" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Warrior"          withMaxAttack:1300])
         return [self getCardWithSerial:@"81057959"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Warrior" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Warrior"          withMaxAttack:1300])
         return [self getCardWithSerial:@"49791927"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Winged Beast" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Winged Beast"     withMaxAttack:1300])
         return [self getCardWithSerial:@"59036972"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Rock" andType:@"Warrior" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Rock"            andType:@"Warrior"          withMaxAttack:1300])
         return [self getCardWithSerial:@"46864967"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andType:@"Zombie" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster"     andType:@"Zombie"           withMaxAttack:1300])
         return [self getCardWithSerial:@"46474915"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Female" andType:@"Fish" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Female"          andType:@"Fish"             withMaxAttack:1300])
         return [self getCardWithSerial:@"17968114"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Machine" andType:@"DarkSpellcaster" withMaxAttack:1350])
+    if ([self canFuseWith:fusionMaterial WithType:@"Machine"         andType:@"DarkSpellcaster"  withMaxAttack:1350])
         return [self getCardWithSerial:@"76446915"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Fish" withMaxAttack:1350])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Fish"             withMaxAttack:1350])
         return [self getCardWithSerial:@"47922711"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Egg" andType:@"Winged" withMaxAttack:1400])
+    if ([self canFuseWith:fusionMaterial WithType:@"Egg"             andType:@"Winged"           withMaxAttack:1400])
         return [self getCardWithSerial:@"42418084"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andType:@"Thunder" withMaxAttack:1400])
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua"            andType:@"Thunder"          withMaxAttack:1400])
         return [self getCardWithSerial:@"12146024"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andType:@"Machine" withMaxAttack:1400])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fish"            andType:@"Machine"          withMaxAttack:1400])
         return [self getCardWithSerial:@"33178416"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Plant" andType:@"Warrior" withMaxAttack:1400])
+    if ([self canFuseWith:fusionMaterial WithType:@"Plant"           andType:@"Warrior"          withMaxAttack:1400])
         return [self getCardWithSerial:@"84990171"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Turtle" withMaxAttack:1400])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Turtle"           withMaxAttack:1400])
         return [self getCardWithSerial:@"96981563"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Turtle" andType:@"Rock" withMaxAttack:1450])
+    if ([self canFuseWith:fusionMaterial WithType:@"Turtle"          andType:@"Rock"             withMaxAttack:1450])
         return [self getCardWithSerial:@"09540040"];
-    if ([self canFuseWith:fusionMaterial WithType:@"KoumoriMaterial" andType:@"Dragon" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"KoumoriMaterial" andType:@"Dragon"           withMaxAttack:1500])
         return [self getCardWithSerial:@"67724379"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"DarkMagic" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"DarkMagic"        withMaxAttack:1500])
         return [self getCardWithSerial:@"87564352"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Fish" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Fish"             withMaxAttack:1500])
         return [self getCardWithSerial:@"80516007"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Machine" andType:@"Warrior" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Machine"         andType:@"Warrior"          withMaxAttack:1500])
         return [self getCardWithSerial:@"75559356"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andType:@"Thunder" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster"     andType:@"Thunder"          withMaxAttack:1500])
         return [self getCardWithSerial:@"84926738"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Warrior" andType:@"Zombie" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Warrior"         andType:@"Zombie"           withMaxAttack:1500])
         return [self getCardWithSerial:@"20277860"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andType:@"Dragon" withMaxAttack:1600])
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua"            andType:@"Dragon"           withMaxAttack:1600])
         return [self getCardWithSerial:@"85326399"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Thunder" withMaxAttack:1600])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Thunder"          withMaxAttack:1600])
         return [self getCardWithSerial:@"31786629"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Zombie" withMaxAttack:1600])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Zombie"           withMaxAttack:1600])
         return [self getCardWithSerial:@"66672569"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andType:@"Machine" withMaxAttack:1600])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fish"            andType:@"Machine"          withMaxAttack:1600])
         return [self getCardWithSerial:@"55998462"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Machine" withMaxAttack:1650])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Machine"          withMaxAttack:1650])
         return [self getCardWithSerial:@"69893315"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Fish" withMaxAttack:1700])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Fish"             withMaxAttack:1700])
         return [self getCardWithSerial:@"29929832"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Zombie" withMaxAttack:1700])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Zombie"           withMaxAttack:1700])
         return [self getCardWithSerial:@"32355828"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Warrior" withMaxAttack:1750])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Warrior"          withMaxAttack:1750])
         return [self getCardWithSerial:@"13069066"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andType:@"Dragon" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua"            andType:@"Dragon"           withMaxAttack:1800])
         return [self getCardWithSerial:@"76634149"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Plant" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Plant"            withMaxAttack:1800])
         return [self getCardWithSerial:@"95952802"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dinosaur" andType:@"Machine" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dinosaur"        andType:@"Machine"          withMaxAttack:1800])
         return [self getCardWithSerial:@"89112729"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Plant" andType:@"Zombie" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Plant"           andType:@"Zombie"           withMaxAttack:1800])
         return [self getCardWithSerial:@"29155212"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Warrior" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Warrior"          withMaxAttack:1800])
         return [self getCardWithSerial:@"45231177"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Female" andType:@"Fairy" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Female"          andType:@"Fairy"            withMaxAttack:1800])
         return [self getCardWithSerial:@"35565537"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Female" andType:@"Plant" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Female"          andType:@"Plant"            withMaxAttack:1800])
         return [self getCardWithSerial:@"04179849"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Machine" withMaxAttack:1850])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Machine"          withMaxAttack:1850])
         return [self getCardWithSerial:@"09293977"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Plant" withMaxAttack:1850])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Plant"            withMaxAttack:1850])
         return [self getCardWithSerial:@"89832901"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Warrior" withMaxAttack:1900])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Warrior"          withMaxAttack:1900])
         return [self getCardWithSerial:@"35752363"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andType:@"Thunder" withMaxAttack:1900])
+    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster"     andType:@"Thunder"          withMaxAttack:1900])
         return [self getCardWithSerial:@"09653271"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Female" andType:@"Beast" withMaxAttack:1900])
+    if ([self canFuseWith:fusionMaterial WithType:@"Female"          andType:@"Beast"            withMaxAttack:1900])
         return [self getCardWithSerial:@"43352213"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Turtle" andType:@"Winged Beast" withMaxAttack:1900])
+    if ([self canFuseWith:fusionMaterial WithType:@"Turtle"          andType:@"Winged Beast"     withMaxAttack:1900])
         return [self getCardWithSerial:@"72929454"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Winged" withMaxAttack:2000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Winged"           withMaxAttack:2000])
         return [self getCardWithSerial:@"69780745"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Elf" andType:@"DarkMagic"  withMaxAttack:2000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Elf"             andType:@"DarkMagic"        withMaxAttack:2000])
         return [self getCardWithSerial:@"21417692"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Rock" withMaxAttack:2000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Rock"             withMaxAttack:2000])
         return [self getCardWithSerial:@"68171737"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Zombie" withMaxAttack:2000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Zombie"           withMaxAttack:2000])
         return [self getCardWithSerial:@"28279543"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Turtle" andType:@"Dragon" withMaxAttack:2000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Turtle"          andType:@"Dragon"           withMaxAttack:2000])
         return [self getCardWithSerial:@"23659124"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Pyro" withMaxAttack:2100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Pyro"             withMaxAttack:2100])
         return [self getCardWithSerial:@"60862676"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andType:@"Winged" withMaxAttack:2100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast"           andType:@"Winged"           withMaxAttack:2100])
         return [self getCardWithSerial:@"04796100"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Female" andType:@"Rock" withMaxAttack:2100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Female"          andType:@"Rock"             withMaxAttack:2100])
         return [self getCardWithSerial:@"32751480"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Machine" andType:@"Dragon" withMaxAttack:2100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Machine"         andType:@"Dragon"           withMaxAttack:2100])
         return [self getCardWithSerial:@"70095154"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Jar" andType:@"DarkSpellcaster" withMaxAttack:2150])
+    if ([self canFuseWith:fusionMaterial WithType:@"Jar"             andType:@"DarkSpellcaster"  withMaxAttack:2150])
         return [self getCardWithSerial:@"48649353"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Female" andType:@"Insect" withMaxAttack:2200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Female"          andType:@"Insect"           withMaxAttack:2200])
         return [self getCardWithSerial:@"91512835"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andType:@"Winged Beast" withMaxAttack:2300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro"            andType:@"Winged Beast"     withMaxAttack:2300])
         return [self getCardWithSerial:@"46696593"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Machine" withMaxAttack:2600])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Machine"          withMaxAttack:2600])
         return [self getCardWithSerial:@"81480460"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andType:@"Thunder" withMaxAttack:2800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon"          andType:@"Thunder"          withMaxAttack:2800])
         return [self getCardWithSerial:@"54752875"];
     
     if ([fusionMaterial isSpell] || [fusionMaterial isTrap]) return self;
@@ -599,13 +592,7 @@
 -(BOOL)isField   {return ([[self type] hasPrefix:@"Field"]);}
 -(BOOL)isTrap    {return ([[self attribute] isEqualToString:@"TRAP"]);}
 
--(BOOL)ultimateRare{
-    //Exodia Cards are Ultimate Rare
-    return [[self rarity] isEqualToString:@"Ultimate"];
-}
--(BOOL)uniqueCard{
-    //The Divine Beasts are Unique, just like the Orichalcus season cards
-    return [[self rarity] isEqualToString:@"Unique"];
-}
+-(BOOL)ultimateRare {return [[self rarity] isEqualToString:@"Ultimate"];} //Exodia Cards are Ultimate Rare
+-(BOOL)uniqueCard   {return [[self rarity] isEqualToString:@"Unique"];}   //The Divine Beasts are Unique, just like the Orichalcus season cards
 
 @end

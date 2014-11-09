@@ -158,6 +158,11 @@
         [self campaign];
     }
     if (alertView == saveAlert && buttonIndex == 0){
+        
+        //Temporary code used to test cards:
+        //[self addStarsNumber:10000];
+        //for (int x = 1; x<=[_gameCards getNumberOfCards]; x++) [self addCardToBox:x];
+        
         [self writeToFile:[NSGame savePath] atomically:YES];
         NSString* message = @"Your game state was saved successfully.";
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Game Saved" message:message delegate:self

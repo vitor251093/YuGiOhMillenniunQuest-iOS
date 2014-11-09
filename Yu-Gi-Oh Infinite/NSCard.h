@@ -50,12 +50,10 @@ typedef enum GuardianStarEffect
 
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *rarity;
-@property(nonatomic, retain) NSString *circulation;
-@property(nonatomic, retain) NSString *cardId;
 @property(nonatomic, retain) NSString *cardDescription;
 @property(nonatomic, retain) NSString *serial;
 @property(nonatomic, retain) NSString *type;
-@property(nonatomic) int cardID;
+@property(nonatomic) NSInteger cardID;
 
 @property(nonatomic, retain) NSString *attribute;
 @property(nonatomic, retain) NSString *level;
@@ -86,7 +84,7 @@ typedef enum GuardianStarEffect
 -(NSCard*)getCardWithSerial:(NSString*)serial;
 -(void)setCard:(NSDictionary*)card;
 
-+(int)getNumberOfCards;
+-(int)getNumberOfCards;
 -(UIImage*)image;
 +(UIImage*)getCardPicture:(NSString*)code;
 

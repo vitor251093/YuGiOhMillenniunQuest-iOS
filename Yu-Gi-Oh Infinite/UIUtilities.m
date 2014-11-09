@@ -54,8 +54,10 @@ AudioPlayer* audioPlayer;
 }
 
 +(CGFloat)widthOfString:(NSString*)string withFont:(UIFont*)font{
-	NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
-	return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
+    if (string){
+        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:font, NSFontAttributeName, nil];
+        return [[[NSAttributedString alloc] initWithString:string attributes:attributes] size].width;
+    } return 0;
 }
 
 +(CGRect)addBorder:(CGRect)rect atPercent:(CGFloat)perc{
