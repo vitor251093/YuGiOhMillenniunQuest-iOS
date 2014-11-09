@@ -109,27 +109,27 @@
 }
 +(NSString*)getGuardianStarName:(GuardianStar)guard{
     if (guard == Mercury) return @"Mercury";
-    if (guard == Sun) return @"Sun";
-    if (guard == Moon) return @"Moon";
-    if (guard == Venus) return @"Venus";
-    if (guard == Mars) return @"Mars";
+    if (guard == Sun)     return @"Sun";
+    if (guard == Moon)    return @"Moon";
+    if (guard == Venus)   return @"Venus";
+    if (guard == Mars)    return @"Mars";
     if (guard == Jupiter) return @"Jupiter";
-    if (guard == Saturn) return @"Saturn";
-    if (guard == Uranus) return @"Uranus";
-    if (guard == Pluto) return @"Pluto";
+    if (guard == Saturn)  return @"Saturn";
+    if (guard == Uranus)  return @"Uranus";
+    if (guard == Pluto)   return @"Pluto";
     if (guard == Neptune) return @"Neptune";
     return nil;
 }
 +(GuardianStar)getGuardianStarForString:(NSString*)string{
     if ([[string capitalizedString] contains:@"Mercury"]) return Mercury;
-    if ([[string capitalizedString] contains:@"Sun"]) return Sun;
-    if ([[string capitalizedString] contains:@"Moon"]) return Moon;
-    if ([[string capitalizedString] contains:@"Venus"]) return Venus;
-    if ([[string capitalizedString] contains:@"Mars"]) return Mars;
+    if ([[string capitalizedString] contains:@"Sun"])     return Sun;
+    if ([[string capitalizedString] contains:@"Moon"])    return Moon;
+    if ([[string capitalizedString] contains:@"Venus"])   return Venus;
+    if ([[string capitalizedString] contains:@"Mars"])    return Mars;
     if ([[string capitalizedString] contains:@"Jupiter"]) return Jupiter;
-    if ([[string capitalizedString] contains:@"Saturn"]) return Saturn;
-    if ([[string capitalizedString] contains:@"Uranus"]) return Uranus;
-    if ([[string capitalizedString] contains:@"Pluto"]) return Pluto;
+    if ([[string capitalizedString] contains:@"Saturn"])  return Saturn;
+    if ([[string capitalizedString] contains:@"Uranus"])  return Uranus;
+    if ([[string capitalizedString] contains:@"Pluto"])   return Pluto;
     if ([[string capitalizedString] contains:@"Neptune"]) return Neptune;
     return -1;
 }
@@ -206,7 +206,7 @@
 }
 
 -(BOOL)isType:(NSString*)type{
-    if ([[self type] isEqualToString:@"type"]) return TRUE;
+    if ([[self type] isEqualToString:type]) return TRUE;
     if ([type isEqualToString:@"Animal"] && [self isAnimal]) return TRUE;
     if ([type isEqualToString:@"DarkMagic"] && [self isDarkMagic]) return TRUE;
     if ([type isEqualToString:@"DarkSpellcaster"] && [self isDarkSpellcaster]) return TRUE;
@@ -601,17 +601,11 @@
 
 -(BOOL)ultimateRare{
     //Exodia Cards are Ultimate Rare
-    NSArray* Ucards = @[@"33396948",@"07902349",@"70903634",@"44519536",@"08124921"];
-    for (NSString *card in Ucards)
-        if ([card isEqualToString:[self serial]]) return TRUE;
-    return FALSE;
+    return [[self rarity] isEqualToString:@"Ultimate"];
 }
 -(BOOL)uniqueCard{
-    //The Divine Beast will be Unique
-    NSArray* Ucards = @[];
-    for (NSString *card in Ucards)
-        if ([card isEqualToString:[self serial]]) return TRUE;
-    return FALSE;
+    //The Divine Beasts are Unique, just like the Orichalcus season cards
+    return [[self rarity] isEqualToString:@"Unique"];
 }
 
 @end
