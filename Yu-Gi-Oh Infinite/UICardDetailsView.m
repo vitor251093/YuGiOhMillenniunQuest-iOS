@@ -112,28 +112,33 @@
         CGFloat side = windowFrame.size.height/20;
         space =  windowFrame.size.height/9;
         
+        //Guardian Star Text
         guardianStarText = [self generateTextFieldAt:CGRectMake(0,45,BASE_WINDOW_WIDTH/2,45)];
-        
-        frameBase = guardianStarText.frame;
         [guardianStarText setText:@"GUARDIAN STAR"];
         guardianStarText.font = [UIFont systemFontOfSize:windowHeight/20];
+        frameBase = guardianStarText.frame;
         [guardianStarText setFrame:CGRectMake(frameBase.origin.x+3*windowHeight/75,frameBase.origin.y, frameBase.size.width,frameBase.size.height)];
         
+        //Guardian Star One Icon
         guardianStarOneIcon = [[UIImageView alloc] initWithImage:[NSCard getGuardianStarSymbol:[playerCard guardianStarOne]]];
         [guardianStarOneIcon setFrame:CGRectMake(frameBase.origin.x + space/1.7, frameBase.origin.y + space,     side, side)];
         
+        //Guardian Star Two Icon
         guardianStarTwoIcon = [[UIImageView alloc] initWithImage:[NSCard getGuardianStarSymbol:[playerCard guardianStarTwo]]];
         [guardianStarTwoIcon setFrame:CGRectMake(frameBase.origin.x + space/1.7, frameBase.origin.y + space*1.7, side, side)];
         
+        //Guardian Star One and Two Text
         guardianStarOneText = [self generateTextFieldAt:CGRectMake(0,70,BASE_WINDOW_WIDTH/2,35)];
         guardianStarTwoText = [self generateTextFieldAt:CGRectMake(0,70,BASE_WINDOW_WIDTH/2,35)];
         frameBase = guardianStarOneText.frame;
         
+        //Guardian Star One Text
         textY = guardianStarOneIcon.frame.origin.y + guardianStarOneIcon.frame.size.height/2 - frameBase.size.height/2;
         [guardianStarOneText setFrame:CGRectMake(frameBase.origin.x + space/1.3 + side, textY, frameBase.size.width,frameBase.size.height)];
         [guardianStarOneText setText:[NSCard getGuardianStarName:[playerCard guardianStarOne]]];
         guardianStarOneText.font = [UIFont systemFontOfSize:windowHeight/22];
         
+        //Guardian Star Two Text
         textY = guardianStarTwoIcon.frame.origin.y + guardianStarTwoIcon.frame.size.height/2 - frameBase.size.height/2;
         [guardianStarTwoText setFrame:CGRectMake(frameBase.origin.x + space/1.3 + side, textY, frameBase.size.width, frameBase.size.height)];
         [guardianStarTwoText setText:[NSCard getGuardianStarName:[playerCard guardianStarTwo]]];
@@ -147,7 +152,7 @@
     }
     
     frameBase = [self generateRectOf:CGRectMake(0,42,BASE_WINDOW_WIDTH,45)];
-    frameBase = CGRectMake(frameBase.origin.x+3*windowHeight/75,frameBase.origin.y, frameBase.size.width,frameBase.size.height);
+    frameBase = CGRectMake(frameBase.origin.x+3*windowHeight/75, frameBase.origin.y, frameBase.size.width, frameBase.size.height);
     space = frameBase.origin.x - blockStartX;
     descriptionText = [self generateTextViewAt:CGRectMake(0,142,BASE_WINDOW_WIDTH,35)];
     [descriptionText setFrame:CGRectMake(frameBase.origin.x, descriptionText.frame.origin.y,
@@ -163,46 +168,46 @@
 }
 
 -(void)intro{
-    CGRect cardFrame = cardPlayer.frame;
-    CGRect bgTypeFrame = BGType.frame;
-    CGRect bgGSFrame = BGGuardianStar.frame;
-    CGRect bgDescFrame = BGDescription.frame;
-    CGRect typeIconFrame = typeIcon.frame;
-    CGRect typeTextFrame = typeText.frame;
-    CGRect GSFrame = guardianStarText.frame;
+    CGRect cardFrame      = cardPlayer.frame;
+    CGRect bgTypeFrame    = BGType.frame;
+    CGRect bgGSFrame      = BGGuardianStar.frame;
+    CGRect bgDescFrame    = BGDescription.frame;
+    CGRect typeIconFrame  = typeIcon.frame;
+    CGRect typeTextFrame  = typeText.frame;
+    CGRect GSFrame        = guardianStarText.frame;
     CGRect GSOneIconFrame = guardianStarOneIcon.frame;
     CGRect GSOneTextFrame = guardianStarOneText.frame;
     CGRect GSTwoIconFrame = guardianStarTwoIcon.frame;
     CGRect GSTwoTextFrame = guardianStarTwoText.frame;
-    CGRect GSDescFrame = descriptionText.frame;
+    CGRect GSDescFrame    = descriptionText.frame;
     
-    cardPlayer.frame = [self slideToLeft:cardFrame];
-    BGType.frame = [self slideToRight:bgTypeFrame];
-    BGGuardianStar.frame = [self slideToRight:bgGSFrame];
-    BGDescription.frame = [self slideToRight:bgDescFrame];
-    typeIcon.frame = [self slideToRight:typeIconFrame];
-    typeText.frame = [self slideToRight:typeTextFrame];
-    guardianStarText.frame = [self slideToRight:GSFrame];
+    cardPlayer.frame          = [self slideToLeft:cardFrame];
+    BGType.frame              = [self slideToRight:bgTypeFrame];
+    BGGuardianStar.frame      = [self slideToRight:bgGSFrame];
+    BGDescription.frame       = [self slideToRight:bgDescFrame];
+    typeIcon.frame            = [self slideToRight:typeIconFrame];
+    typeText.frame            = [self slideToRight:typeTextFrame];
+    guardianStarText.frame    = [self slideToRight:GSFrame];
     guardianStarOneIcon.frame = [self slideToRight:GSOneIconFrame];
     guardianStarOneText.frame = [self slideToRight:GSOneTextFrame];
     guardianStarTwoIcon.frame = [self slideToRight:GSTwoIconFrame];
     guardianStarTwoText.frame = [self slideToRight:GSTwoTextFrame];
-    descriptionText.frame = [self slideToRight:GSDescFrame];
+    descriptionText.frame     = [self slideToRight:GSDescFrame];
     self.alpha = 0;
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        cardPlayer.frame = cardFrame;
-        BGType.frame = bgTypeFrame;
-        BGGuardianStar.frame = bgGSFrame;
-        BGDescription.frame = bgDescFrame;
-        typeIcon.frame = typeIconFrame;
-        typeText.frame = typeTextFrame;
-        guardianStarText.frame = GSFrame;
+        cardPlayer.frame          = cardFrame;
+        BGType.frame              = bgTypeFrame;
+        BGGuardianStar.frame      = bgGSFrame;
+        BGDescription.frame       = bgDescFrame;
+        typeIcon.frame            = typeIconFrame;
+        typeText.frame            = typeTextFrame;
+        guardianStarText.frame    = GSFrame;
         guardianStarOneIcon.frame = GSOneIconFrame;
         guardianStarOneText.frame = GSOneTextFrame;
         guardianStarTwoIcon.frame = GSTwoIconFrame;
         guardianStarTwoText.frame = GSTwoTextFrame;
-        descriptionText.frame = GSDescFrame;
+        descriptionText.frame     = GSDescFrame;
         self.alpha = 1.0;
     } completion:nil];
 }
@@ -224,32 +229,32 @@
     [self intro];
 }
 -(void)close{
-    CGRect cardFrame = cardPlayer.frame;
-    CGRect bgTypeFrame = BGType.frame;
-    CGRect bgGSFrame = BGGuardianStar.frame;
-    CGRect bgDescFrame = BGDescription.frame;
-    CGRect typeIconFrame = typeIcon.frame;
-    CGRect typeTextFrame = typeText.frame;
-    CGRect GSFrame = guardianStarText.frame;
+    CGRect cardFrame      = cardPlayer.frame;
+    CGRect bgTypeFrame    = BGType.frame;
+    CGRect bgGSFrame      = BGGuardianStar.frame;
+    CGRect bgDescFrame    = BGDescription.frame;
+    CGRect typeIconFrame  = typeIcon.frame;
+    CGRect typeTextFrame  = typeText.frame;
+    CGRect GSFrame        = guardianStarText.frame;
     CGRect GSOneIconFrame = guardianStarOneIcon.frame;
     CGRect GSOneTextFrame = guardianStarOneText.frame;
     CGRect GSTwoIconFrame = guardianStarTwoIcon.frame;
     CGRect GSTwoTextFrame = guardianStarTwoText.frame;
-    CGRect GSDescFrame = descriptionText.frame;
+    CGRect GSDescFrame    = descriptionText.frame;
     
     [UIView animateWithDuration:ANIMATION_DURATION animations:^{
-        cardPlayer.frame = [self slideToLeft:cardFrame];
-        BGType.frame = [self slideToRight:bgTypeFrame];
-        BGGuardianStar.frame = [self slideToRight:bgGSFrame];
-        BGDescription.frame = [self slideToRight:bgDescFrame];
-        typeIcon.frame = [self slideToRight:typeIconFrame];
-        typeText.frame = [self slideToRight:typeTextFrame];
-        guardianStarText.frame = [self slideToRight:GSFrame];
+        cardPlayer.frame          = [self slideToLeft:cardFrame];
+        BGType.frame              = [self slideToRight:bgTypeFrame];
+        BGGuardianStar.frame      = [self slideToRight:bgGSFrame];
+        BGDescription.frame       = [self slideToRight:bgDescFrame];
+        typeIcon.frame            = [self slideToRight:typeIconFrame];
+        typeText.frame            = [self slideToRight:typeTextFrame];
+        guardianStarText.frame    = [self slideToRight:GSFrame];
         guardianStarOneIcon.frame = [self slideToRight:GSOneIconFrame];
         guardianStarOneText.frame = [self slideToRight:GSOneTextFrame];
         guardianStarTwoIcon.frame = [self slideToRight:GSTwoIconFrame];
         guardianStarTwoText.frame = [self slideToRight:GSTwoTextFrame];
-        descriptionText.frame = [self slideToRight:GSDescFrame];
+        descriptionText.frame     = [self slideToRight:GSDescFrame];
         self.alpha = 0;
     } completion:^(BOOL finished){[self removeFromSuperview];}];
 }
