@@ -302,69 +302,71 @@
         return [self getCardWithSerial:@"61036413"];
     
     
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"83464209" withMaxAttack:1100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Thunder" andCard:@"57046845" withMaxAttack:2800]) //Gilford the Lightning
+        return [self getCardWithSerial:@"36354007"];
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"83464209" withMaxAttack:1100]) //Mystical Sheep #1
         return [self getCardWithSerial:@"30451366"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"83464209" withMaxAttack:1100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"83464209" withMaxAttack:1100]) //Mystical Sheep #1
         return [self getCardWithSerial:@"30451366"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"53830602" withMaxAttack:1200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"53830602" withMaxAttack:1200]) //Darkworld Thorns
         return [self getCardWithSerial:@"43500484"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"07892180" withMaxAttack:1200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"07892180" withMaxAttack:1200]) //Kappa Avenger
         return [self getCardWithSerial:@"48109103"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andCard:@"94675535" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Beast" andCard:@"94675535" withMaxAttack:1300]) //Mon Larvas
         return [self getCardWithSerial:@"07225792"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"02863439" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"02863439" withMaxAttack:1300]) //Fiend Reflection 1
         return [self getCardWithSerial:@"68870276"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"55337339" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"55337339" withMaxAttack:1300]) //Fiend Reflection 1
         return [self getCardWithSerial:@"68870276"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"15150371" withMaxAttack:1300])
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"15150371" withMaxAttack:1300]) //Fiend Reflection 1
         return [self getCardWithSerial:@"68870276"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andCard:@"98049915" withMaxAttack:1400])
+    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andCard:@"98049915" withMaxAttack:1400]) //Lord of the Lamp
         return [self getCardWithSerial:@"99510761"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"68963107" withMaxAttack:1400])
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"68963107" withMaxAttack:1400]) //Spirit of the Books
         return [self getCardWithSerial:@"14037717"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"48109103" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"48109103" withMaxAttack:1500]) //Hyosube
         return [self getCardWithSerial:@"02118022"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"07892180" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"07892180" withMaxAttack:1500]) //Hyosube
         return [self getCardWithSerial:@"02118022"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"27094595" withMaxAttack:1500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"27094595" withMaxAttack:1500]) //The Snake Hair
         return [self getCardWithSerial:@"29491031"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andCard:@"77456781" withMaxAttack:1600])
+    if ([self canFuseWith:fusionMaterial WithType:@"Pyro" andCard:@"77456781" withMaxAttack:1600]) //Fire Kraken
         return [self getCardWithSerial:@"46534755"];
-    if ([self canFuseWith:fusionMaterial WithType:@"DarkSpellcaster" andCard:@"15303296" withMaxAttack:1600])
+    if ([self canFuseWith:fusionMaterial WithType:@"DarkSpellcaster" andCard:@"15303296" withMaxAttack:1600]) //Ryu-Kishin Powered
         return [self getCardWithSerial:@"24611934"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"15303296" withMaxAttack:1650])
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"15303296" withMaxAttack:1650]) //Whiptail Crow
         return [self getCardWithSerial:@"91996584"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fairy" andCard:@"64501875" withMaxAttack:1750])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fairy" andCard:@"64501875" withMaxAttack:1750]) //Musician King
         return [self getCardWithSerial:@"56907389"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fairy" andCard:@"38942059" withMaxAttack:1750])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fairy" andCard:@"38942059" withMaxAttack:1750]) //Musician King
         return [self getCardWithSerial:@"56907389"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andCard:@"67629977" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andCard:@"67629977" withMaxAttack:1800]) //7 Colored Fish
         return [self getCardWithSerial:@"23771716"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andCard:@"21347810" withMaxAttack:1800])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fish" andCard:@"21347810" withMaxAttack:1800]) //7 Colored Fish
         return [self getCardWithSerial:@"23771716"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"58314394" withMaxAttack:1850])
+    if ([self canFuseWith:fusionMaterial WithType:@"Aqua" andCard:@"58314394" withMaxAttack:1850]) //Amphibious Bugroth
         return [self getCardWithSerial:@"40173854"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Insect" andCard:@"60802233" withMaxAttack:1900])
+    if ([self canFuseWith:fusionMaterial WithType:@"Insect" andCard:@"60802233" withMaxAttack:1900]) //Kwagar Hercules
         return [self getCardWithSerial:@"95144193"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andCard:@"85326399" withMaxAttack:1900])
+    if ([self canFuseWith:fusionMaterial WithType:@"Spellcaster" andCard:@"85326399" withMaxAttack:1900]) //Kaminari Attack
         return [self getCardWithSerial:@"09653271"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"14708569" withMaxAttack:2000])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"14708569" withMaxAttack:2000]) //Rose Spectre of Dunn
         return [self getCardWithSerial:@"32485271"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"28003512" withMaxAttack:2100])
+    if ([self canFuseWith:fusionMaterial WithType:@"Winged Beast" andCard:@"28003512" withMaxAttack:2100]) //Punished Eagle
         return [self getCardWithSerial:@"74703140"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Reptile" andCard:@"92667214" withMaxAttack:2200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Reptile" andCard:@"92667214" withMaxAttack:2200]) //Soul Hunter
         return [self getCardWithSerial:@"72869010"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Reptile" andCard:@"93889755" withMaxAttack:2200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Reptile" andCard:@"93889755" withMaxAttack:2200]) //Soul Hunter
         return [self getCardWithSerial:@"72869010"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Warrior" andCard:@"28003512" withMaxAttack:2200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Warrior" andCard:@"28003512" withMaxAttack:2200]) //Judge Man
         return [self getCardWithSerial:@"30113682"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"40374923" withMaxAttack:2200])
+    if ([self canFuseWith:fusionMaterial WithType:@"Zombie" andCard:@"40374923" withMaxAttack:2200]) //Great Mammoth of Goldfine
         return [self getCardWithSerial:@"54622031"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andCard:@"71625222" withMaxAttack:2400])
+    if ([self canFuseWith:fusionMaterial WithType:@"Dragon" andCard:@"71625222" withMaxAttack:2400]) //Thousand Dragon
         return [self getCardWithSerial:@"41462083"];
-    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"55337339" withMaxAttack:2500])
+    if ([self canFuseWith:fusionMaterial WithType:@"Fiend" andCard:@"55337339" withMaxAttack:2500]) //Summoned Skull
         return [self getCardWithSerial:@"70781052"];
-    if ([self canFuseWith:fusionMaterial WithType:@"DarkSpellcaster" andCard:@"97454149" withMaxAttack:2500])
+    if ([self canFuseWith:fusionMaterial WithType:@"DarkSpellcaster" andCard:@"97454149" withMaxAttack:2500]) //Dark Magician
         return [self getCardWithSerial:@"46986414"];
     
     if ([self canFuseWith:fusionMaterial WithType:@"Plant" andType:@"Pyro" withMaxAttack:700])
